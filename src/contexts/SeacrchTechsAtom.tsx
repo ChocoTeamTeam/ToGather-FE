@@ -27,7 +27,6 @@ const filteredStudy = selector({
   key: 'SEARCHED_STUDY_LIST',
   get: ({get}) => {
     const searchedTechs: searchedTechsType =  get(searchTechsAtom);
-    console.log(Object.keys(searchedTechs))
     if(Object.keys(searchedTechs).length !== 0){
       const res =  StudyListTest.filter(( { techs } ) => {
         return techs.some(tech => {
