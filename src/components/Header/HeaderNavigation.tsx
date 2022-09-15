@@ -13,7 +13,7 @@ import {
   MenuBtn,
   GpsContainer,
 } from './HeaderNavigation.styles';
-import SearchMenu from './searchMenu/SearchMenu';
+import SearchMenu from './SearchMenu';
 import { GpsIcon } from '../@icons';
 
 const HeaderNavigation = () => {
@@ -27,7 +27,7 @@ const HeaderNavigation = () => {
   const [favoriteIsOpen, setFavoriteIsOpen] = useState(false);
   const [statisticsIsOpen, setStatisticsIsOpen] = useState(false);
   const [gpsIsOpen, setGpsIsOpen] = useState(false);
-
+  
   return (
     <>
     <NavigationContainer>

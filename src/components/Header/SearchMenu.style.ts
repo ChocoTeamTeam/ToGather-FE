@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
-import Flex from '../../../styles/Flex';
-import COLOR from '../../../constants/colors';
-import FontSizes from '../../../constants/FontSizes';
+import Flex from '../../styles/Flex';
+import COLOR from '../../constants/colors';
+import FontSizes from '../../constants/FontSizes';
 import { theme } from '@emotion/react';
 
 interface isOpen {

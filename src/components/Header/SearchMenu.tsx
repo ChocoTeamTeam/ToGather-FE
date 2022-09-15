@@ -1,7 +1,7 @@
 import { SearchContainer, TechsContainer, TechBtn } from './SearchMenu.style';
-import { techs } from '../../@icons/index';
+import { techs } from '../@icons/index';
 import { useRecoilState } from 'recoil';
-import { searchTechsAtom } from '../../../contexts/SeacrchTechsAtom';
+import { searchTechsAtom } from '../../contexts/SeacrchTechsAtom';
 
 interface SearchMenuProps {
   searchIsOpen: boolean;

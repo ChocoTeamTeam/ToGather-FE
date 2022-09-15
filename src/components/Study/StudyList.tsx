@@ -1,16 +1,15 @@
 import { Study, StudyDeadline, StudyTitle, StudyFooter, StudyAuthor, StudyViewer} from './StudyList.style';
-import { StudyListTest } from '../../../mocks/StudyListTest';
+import { StudyListTest } from '../../mocks/StudyListTest';
 import { Link } from 'react-router-dom';
-import { techs } from '../../@icons/techs/techs';
+import { techs } from '../@icons/techs/techs';
 import Slider from "react-slick";
 import { useRecoilValue } from 'recoil';
-import Studytechs from '../StudyTechs/StudyTechs';
-import { filteredStudy } from '../../../contexts/SeacrchTechsAtom';
+import Studytechs from './StudyTechs';
+import { filteredStudy } from '../../contexts/SeacrchTechsAtom';
 
 const StudyList = () => {
 
   const studyList = useRecoilValue(filteredStudy)
-  console.log(studyList);
   
 
   return (

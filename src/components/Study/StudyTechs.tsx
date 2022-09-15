@@ -1,4 +1,4 @@
-import { techsIdTable, techsNameTable } from '../../../mocks/TechsTableTest';
+import { techsIdTable, techsNameTable } from '../../mocks/TechsTableTest';
 import Slider from "react-slick";
 import { StudytechsBlock, TechIconContainer } from './StudyTechs.style';
 import styled from '@emotion/styled';
