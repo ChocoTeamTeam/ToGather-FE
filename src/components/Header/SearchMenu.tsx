@@ -8,36 +8,36 @@ interface SearchMenuProps {
 }
 
 interface BtnStateType {
-  [key:string]: boolean;
+
+  [key: string]: boolean;
 }
 
 const SearchMenu = ({ searchIsOpen }: SearchMenuProps) => {
-
   const [filteredTech, setFilterTech] = useRecoilState(searchTechsAtom);
-  
-  const handleTechBtn = ( tech: string ) => {
-    const copied = {...filteredTech};
-    delete copied[tech];
-    
-    const isPresentTech = filteredTech[tech]; 
 
-    if(isPresentTech){
-      setFilterTech(copied)
-    }else setFilterTech({...filteredTech, [tech]: true})
-  }
+  const handleTechBtn = (tech: string) => {
+    const copied = { ...filteredTech };
+    delete copied[tech];
+
+    const isPresentTech = filteredTech[tech];
+
+    if (isPresentTech) {
+      setFilterTech(copied);
+    } else setFilterTech({ ...filteredTech, [tech]: true });
+  };
+
 
   return (
     <SearchContainer isOpen={searchIsOpen}>
       <TechsContainer>
         {techs.map(({ tech, icon }) => (
-          <TechBtn 
-            key={tech} 
+          <TechBtn
+            key={tech}
             className="tech__Btn"
             onClick={() => {
               handleTechBtn(tech);
-              }
-            }
-            isOn = {filteredTech[tech]}
+            }}
+            isOn={filteredTech[tech]}
           >
             {icon()}
             {tech}

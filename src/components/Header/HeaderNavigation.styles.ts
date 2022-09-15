@@ -14,14 +14,15 @@ const NavigationContainer = styled.nav`
   position: fixed;
   width: 100%;
   height: 4rem;
-  ${Flex({alignItems:'center'})}
+  ${Flex({ alignItems: 'center' })}
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.08);
-  z-index:9999;
+  z-index: 9999;
   background-color: white;
 `;
 
 const NavigationBlock = styled.div`
   width: 1180px;
+  height: 100%;
   max-width: 1180px;
   margin: 0 auto;
 `;
@@ -56,6 +57,13 @@ const NavMenu = styled.div`
   ${Flex({ alignItems: 'center', justifyContent: 'center' })};
   width: ${({ widthProp }: menuWidthProp) => widthProp};
 `;
+
+const MyPageMenu = styled.div`
+  flex: 1;
+  width: 100%;
+  ${Flex({ alignItems: 'center', justifyContent: 'center' })};
+`;
+
 const MenuBtn = styled.div`
   font-weight: 700;
   height: 50%;
@@ -75,7 +83,7 @@ const Favorites = styled.div`
   cursor: default;
   box-shadow: 0px 4px 5px ${COLOR.GRAY_100};
   padding: 1rem;
-  z-index:9999;
+  z-index: 9999;
   background-color: ${COLOR.WHITE};
 `;
 
@@ -94,6 +102,12 @@ const GpsContainer = styled.div`
   }
 `;
 
+const UserBlock = styled.div`
+  display: flex;
+  height: 100%;
+  gap: 2rem;
+`;
+
 export {
   NavigationContainer,
   Wrapper,
@@ -105,4 +119,6 @@ export {
   MenuBtn,
   FavoriteList,
   GpsContainer,
+  UserBlock,
+  MyPageMenu,
 };
