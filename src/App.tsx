@@ -3,9 +3,8 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter, Router, Route, Routes } from 'react-router-dom';
 import MainPage from './pages/MainPage';
 import ModalProvider from './contexts/ModalContext';
-import KakaoAuthPage from './pages/KakaoAuthPage';
-import NaverAuthPage from './pages/NaverAuthPage';
-import Test from './pages/test';
+import AuthRedirectPage from './pages/AuthRedirectPage';
+import Test from './pages/Test';
 
 const App = () => {
   return (
@@ -13,8 +12,7 @@ const App = () => {
       <ModalProvider>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/oauth/kakao" element={<KakaoAuthPage />} />
-          <Route path="/oauth/naver" element={<NaverAuthPage />} />
+          <Route path="/oauth/:social" element={<AuthRedirectPage />} />
         </Routes>
       </ModalProvider>
     </BrowserRouter>

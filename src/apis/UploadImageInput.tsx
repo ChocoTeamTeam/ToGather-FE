@@ -34,6 +34,7 @@ const UploadTest = () => {
     myBucket.putObject(params)
     .send((err) => {
       if (err) console.log("error" + err)
+
     })
   }
   
@@ -41,6 +42,7 @@ const UploadTest = () => {
   const handleFileInput = async (e:React.ChangeEvent<HTMLInputElement>) => {
     if(e.target.files){
       const file = e.target.files[0];
+      console.log(e.target.files[0]);
       
       uploadFile(file);
       e.target.value='';
