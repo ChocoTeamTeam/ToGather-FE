@@ -8,6 +8,7 @@ import { InputBoxBlock, Title, InputLabel, InputText, Wrapper } from './Register
 
 const RegisterModal = () => {
   const [formData, setFormData] = useRecoilState(registerAtom);
+
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -30,7 +31,7 @@ const RegisterModal = () => {
       }
     }
   };
-  
+
   return (
     <Wrapper>
       <Title>회원가입</Title>

@@ -16,6 +16,9 @@ const MyProjectInner = styled.div`
 `;
 
 const ChatRoomBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   margin-left: 3rem;
   width: 100%;
 `;
@@ -31,7 +34,9 @@ const ChatRoomButton = styled.button`
     margin-top: 2rem;
   }
   &:hover {
-    background: gray;
+    outline: none;
+    border-color: ${COLOR.BLUR_700};
+    box-shadow: 0 0 5px ${COLOR.BLUR_700};
   }
 `;
 

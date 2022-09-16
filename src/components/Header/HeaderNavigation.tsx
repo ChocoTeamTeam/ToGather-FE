@@ -16,8 +16,6 @@ import {
   MyPageMenu,
 } from './HeaderNavigation.styles';
 
-import SearchMenu from './SearchMenu';
-
 import { GpsIcon } from '../@icons';
 import MyPageList from '../mypage/MyPageList';
 import { Link } from 'react-router-dom';

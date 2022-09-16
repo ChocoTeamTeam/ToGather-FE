@@ -6,8 +6,8 @@ import {
   StudyFooter,
   StudyTitle,
   StudyViewer,
-} from '../Study/StudyList/StudyList.style';
-import StudyTechs from '../Study/StudyTechs/StudyTechs';
+} from '../Study/StudyList.style';
+import StudyTechs from '../Study/StudyTechs';
 import {
   ChatRoomBlock,
   ChatRoomButton,

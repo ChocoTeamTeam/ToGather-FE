@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import COLOR from 'src/constants/colors';
 
 const InputBoxBlock = styled.div`
   display: flex;
@@ -30,27 +31,19 @@ const ProfileArticle = styled.article`
 
 const InputLabel = styled.label`
   display: block;
-  width: 80px;
+  width: 10%;
 `;
 
 const InputText = styled.input`
   width: 60%;
   height: 100%;
   border-radius: 5px;
-  border: ${({ type }: { type: string }) => (type === 'file' ? 'none' : '1px solid gray')};
+  border: ${({ type }: { type: string }) => (type === 'file' ? 'none' : '2px solid #d1d1d1')};
   padding: 0 1rem;
-`;
-
-const SubmitButton = styled.button`
-  width: 5rem;
-  height: 2rem;
-  border-radius: 1rem;
-  border: 1px solid lightgreen;
-  background: none;
-
-  &:hover {
-    background: lightgreen;
+  &:focus {
+    outline: none;
+    border-color: ${COLOR.BLUR_700};
   }
 `;
 
-export { InputBoxBlock, InputLabel, InputText, ProfileImageBlock, ProfileArticle, SubmitButton };
+export { InputBoxBlock, InputLabel, InputText, ProfileImageBlock, ProfileArticle };

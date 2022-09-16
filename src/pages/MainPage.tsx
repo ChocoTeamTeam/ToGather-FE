@@ -1,4 +1,3 @@
-
 import HeaderNavigation from 'src/components/Header/HeaderNavigation';
 
 import StudyListContainer from 'src/components/Study/StudyContainer';
@@ -9,11 +8,9 @@ import { useIntersectionObserver } from 'usehooks-ts';
 import UploadTest from '../apis/UploadImageInput';
 
 const MainPage = () => {
-
   return (
     <>
       <HeaderNavigation />
-      <UploadTest />
       <Statistics />
       <StudyListContainer />
     </>
@@ -21,4 +18,3 @@ const MainPage = () => {
 };
 
 export default MainPage;
-

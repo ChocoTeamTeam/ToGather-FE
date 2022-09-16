@@ -1,4 +1,3 @@
-
 const COLOR = {
   WHITE: '#ffffff',
   BLACK: '#1a1a1a',
@@ -20,6 +19,9 @@ const COLOR = {
   BLUR_400: '#3498db',
   BLUR_500: '#2e86c1',
   BLUR_600: '#2874a6',
-}
+  BLUR_700: '#2684FF',
+
+  RED_100: '#FF452E',
+};
 
 export default COLOR;
