@@ -2,6 +2,7 @@ import React from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { position, stacktech } from 'src/mocks/SelectTechs';
+import { CancelButton, SubmitButton } from 'src/styles/Button';
 import {
   ProfileImageBlock,
   InputBoxBlock,
@@ -10,14 +11,7 @@ import {
   ProfileArticle,
 } from 'src/styles/Input';
 import Breadcrumb from '../breadCrumb/Breadcrumb';
-import {
-  UserInfoBlock,
-  ButtonBlock,
-  Wrapper,
-  TempBlock,
-  SubmmitButton,
-  CancelButton,
-} from './UserInfo.styles';
+import { UserInfoBlock, ButtonBlock, Wrapper, TempBlock } from './UserInfo.styles';
 
 const UserInfo = () => {
   return (
@@ -70,7 +64,7 @@ const UserInfo = () => {
             <TempBlock>23</TempBlock>
           </InputBoxBlock>
           <ButtonBlock>
-            <SubmmitButton>수정</SubmmitButton>
+            <SubmitButton>수정</SubmitButton>
             <CancelButton>취소</CancelButton>
           </ButtonBlock>
         </form>

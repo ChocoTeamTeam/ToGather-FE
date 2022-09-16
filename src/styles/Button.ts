@@ -1,5 +1,7 @@
 import React from 'react';
 import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+import COLOR from 'src/constants/colors';
 
 interface props {
   btnType: string;
@@ -23,4 +25,15 @@ const buttonStyle = css`
   }
 `;
 
-export { buttonStyle };
+const SubmitButton = styled.button`
+  ${buttonStyle}
+  margin-right: 1rem;
+  background: ${COLOR.BLUR_700};
+`;
+
+const CancelButton = styled.button`
+  ${buttonStyle}
+  background: ${COLOR.GRAY_400};
+`;
+
+export { SubmitButton, CancelButton };

@@ -5,9 +5,9 @@ const position = [
 ];
 
 const stacktech = [
-  { value: 'React', label: 'React' },
-  { value: 'JavaScript', label: 'JavaScript' },
-  { value: 'TypeScript', label: 'TypeScript' },
+  { value: 1, label: 'React' },
+  { value: 2, label: 'JavaScript' },
+  { value: 3, label: 'TypeScript' },
   { value: 'Vue', label: 'Vue' },
   { value: 'NodeJs', label: 'NodeJs' },
   { value: 'Spring', label: 'Spring' },
