@@ -25,17 +25,9 @@ const InputBoxBlock = styled.div`
   }
 `;
 
-const InputLabel = styled.label`
-  display: block;
-  width: 80px;
+const ButtonBlock = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
-const InputText = styled.input`
-  width: 60%;
-  height: 100%;
-  border-radius: 5px;
-  border: 1px solid gray;
-  padding: 0 1rem;
-`;
-
-export { Wrapper, Title, InputBoxBlock, InputLabel, InputText };
+export { Wrapper, Title, InputBoxBlock, ButtonBlock };

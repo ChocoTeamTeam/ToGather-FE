@@ -12,11 +12,17 @@ import {
   Favorites,
   MenuBtn,
   GpsContainer,
+  UserBlock,
+  MyPageMenu,
 } from './HeaderNavigation.styles';
-import SearchMenu from './SearchMenu';
+
 import { GpsIcon } from '../@icons';
 import { useRecoilValue } from 'recoil';
 import { isScrollOverAtom } from '../../contexts/isScrollOverAtom';
+import MyPageList from '../mypage/MyPageList';
+import { Link } from 'react-router-dom';
+import SearchMenu from './SearchMenu';
+import RegisterModal from '../Login/RegisterModal';
 
 const HeaderNavigation = () => {
   const openModal = useContext(modalContext)?.openModal;
@@ -25,17 +31,25 @@ const HeaderNavigation = () => {
     openModal?.(<LoginModal />);
   };
 
+  const handleOpenModal2 = () => {
+    openModal?.(<RegisterModal />);
+  };
+
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [favoriteIsOpen, setFavoriteIsOpen] = useState(false);
   const [gpsIsOpen, setGpsIsOpen] = useState(false);
+
+  const [myPageIsOpen, setMyPageIsOpen] = useState(false);
 
   return (
     <>
       <NavigationContainer>
         <NavigationBlock>
           <Wrapper>
-            <div>로고</div>
-            <CategoryBlock isScrollOver={useRecoilValue(isScrollOverAtom)}>
+
+            <Link to="/">로고</Link>
+            <CategoryBlock>
+
               <NavMenu
                 widthProp={NavMenuWidth.search}
                 onMouseEnter={() => {
@@ -67,7 +81,21 @@ const HeaderNavigation = () => {
                 <GpsIcon />
               </GpsContainer>
             </CategoryBlock>
-            <LoginButton onClick={handleOpenModal}>로그인</LoginButton>
+            
+            <UserBlock>
+              <MyPageMenu
+                widthProp={NavMenuWidth.myPage}
+                onMouseEnter={() => {
+                  setMyPageIsOpen(true);
+                }}
+                onMouseLeave={() => setMyPageIsOpen(false)}
+              >
+                <MenuBtn onClick={() => setMyPageIsOpen(true)}>마이 페이지</MenuBtn>
+                <MyPageList myPageIsOpen={myPageIsOpen} />
+              </MyPageMenu>
+              <LoginButton onClick={handleOpenModal}>로그인</LoginButton>
+              <LoginButton onClick={handleOpenModal2}>회원가입</LoginButton>
+            </UserBlock>
           </Wrapper>
         </NavigationBlock>
       </NavigationContainer>

@@ -5,9 +5,11 @@ import { searchTechsAtom } from '../../contexts/SeacrchTechsAtom';
 import { useEffect, useState } from 'react';
 import useCheckIsScrollOver from '../../hooks/useCheckIsScrollOver';
 
+
 interface SearchMenuProps {
   searchIsOpen: boolean;
 }
+
 
 const SearchMenu = ({ searchIsOpen }: SearchMenuProps) => {
   const [isScrollOver, setIsScrollOver] = useState(false);
@@ -23,6 +25,14 @@ const SearchMenu = ({ searchIsOpen }: SearchMenuProps) => {
     };
   });
 
+
+interface BtnStateType {
+
+  [key: string]: boolean;
+}
+
+const SearchMenu = ({ searchIsOpen }: SearchMenuProps) => {
+
   const [filteredTech, setFilterTech] = useRecoilState(searchTechsAtom);
 
   const handleTechBtn = (tech: string) => {
@@ -35,6 +45,7 @@ const SearchMenu = ({ searchIsOpen }: SearchMenuProps) => {
       setFilterTech(copied);
     } else setFilterTech({ ...filteredTech, [tech]: true });
   };
+
 
   return (
     <SearchContainer isOpen={searchIsOpen} isScrollOver={isScrollOver}>

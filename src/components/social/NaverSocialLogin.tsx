@@ -10,7 +10,6 @@ const NaverSocialLogin = () => {
   const { naver }: any = window;
 
   const initializeNaverLogin = () => {
-    console.log(NAVER_CLIENT_ID);
     const naverLogin = new naver.LoginWithNaverId({
       clientId: NAVER_CLIENT_ID,
       callbackUrl: NAVER_CALLBACK_URL,
@@ -33,7 +32,6 @@ const NaverSocialLogin = () => {
     naverRef.current.children[0].click();
   };
 
-  console.log(naver);
   return (
     <>
       <div style={{ display: 'none' }} ref={naverRef} id="naverIdLogin" />

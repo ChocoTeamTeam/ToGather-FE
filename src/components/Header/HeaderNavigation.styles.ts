@@ -22,6 +22,7 @@ const NavigationContainer = styled.nav`
 
 const NavigationBlock = styled.div`
   width: 1180px;
+  height: 100%;
   max-width: 1180px;
   margin: 0 auto;
 `;
@@ -95,6 +96,12 @@ const GpsContainer = styled.div`
   }
 `;
 
+const UserBlock = styled.div`
+  display: flex;
+  height: 100%;
+  gap: 2rem;
+`;
+
 export {
   NavigationContainer,
   Wrapper,
@@ -106,4 +113,6 @@ export {
   MenuBtn,
   FavoriteList,
   GpsContainer,
+  UserBlock,
+  MyPageMenu,
 };

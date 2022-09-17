@@ -1,32 +1,23 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useEffect } from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { signupToKenAtom, signupToKenSelector } from 'src/contexts/AuthAtom';
+import { position, stacktech } from 'src/mocks/SelectTechs';
+import { SubmitButton } from 'src/styles/Button';
+import { InputLabel, InputText } from 'src/styles/Input';
 import { registerAtom } from '../../contexts/RegisterAtom';
-import { InputBoxBlock, Title, InputLabel, InputText, Wrapper } from './RegisterModal.styles';
-
-const position = [
-  { value: 'backEnd', label: '백엔드' },
-  { value: 'frontEnd', label: '프론트엔드' },
-  { value: 'webbDesiner', label: '웹디자이너' },
-];
-
-const stacktech = [
-  { value: 'React', label: 'React' },
-  { value: 'JavaScript', label: 'JavaScript' },
-  { value: 'TypeScript', label: 'TypeScript' },
-  { value: 'Vue', label: 'Vue' },
-  { value: 'NodeJs', label: 'NodeJs' },
-  { value: 'Spring', label: 'Spring' },
-  { value: 'Java', label: 'Java' },
-  { value: 'Go', label: 'Go' },
-  { value: 'C', label: 'C' },
-  { value: 'Python', label: 'Python' },
-  { value: 'Django', label: 'Django' },
-];
+import { InputBoxBlock, Title, Wrapper, ButtonBlock } from './RegisterModal.styles';
 
 const RegisterModal = () => {
   const [formData, setFormData] = useRecoilState(registerAtom);
+  const signUpToken = useRecoilValue(signupToKenSelector);
+
+  useEffect(() => {
+    return () => setFormData({ nickname: '', profileImage: '', techStackDtos: [] });
+  });
+
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -38,7 +29,7 @@ const RegisterModal = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSelectClear = (targetValue: any, targetAction: any) => {
+  const handleMultiSelectChange = (targetValue: any, targetAction: any) => {
     const { action, name } = targetAction;
     if (action === 'clear') {
       setFormData({ ...formData, [name]: [] });
@@ -49,6 +40,11 @@ const RegisterModal = () => {
       }
     }
   };
+
+  const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+  };
+
   return (
     <Wrapper>
       <Title>회원가입</Title>
@@ -64,16 +60,16 @@ const RegisterModal = () => {
           />
         </InputBoxBlock>
         <InputBoxBlock>
-          <InputLabel htmlFor="profile">프로필</InputLabel>
+          <InputLabel htmlFor="profileImage">프로필</InputLabel>
           <InputText
-            id="profile"
-            name="profile"
+            id="profileImage"
+            name="profileImage"
             type="text"
-            value={formData.profile}
+            value={formData.profileImage}
             onChange={handleChangeInput}
           />
         </InputBoxBlock>
-        <InputBoxBlock>
+        {/* <InputBoxBlock>
           <InputLabel htmlFor="position">포지션</InputLabel>
           <Select
             className="customSelect"
@@ -84,20 +80,23 @@ const RegisterModal = () => {
             options={position}
             onChange={handleSelectChange}
           />
-        </InputBoxBlock>
+        </InputBoxBlock> */}
         <InputBoxBlock>
-          <InputLabel htmlFor="tech">기술 태그</InputLabel>
+          <InputLabel htmlFor="techStackDtos">기술 태그</InputLabel>
           <CreatableSelect
             isClearable
             isMulti
-            id="tech"
+            id="techStackDtos"
             className="customSelect"
-            name="tech"
+            name="techStackDtos"
             placeholder="기술 태그"
             options={stacktech}
-            onChange={handleSelectClear}
+            onChange={handleMultiSelectChange}
           />
         </InputBoxBlock>
+        <ButtonBlock>
+          <SubmitButton onClick={handleSubmit}>전송</SubmitButton>
+        </ButtonBlock>
       </form>
     </Wrapper>
   );

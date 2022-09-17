@@ -3,6 +3,8 @@ import Flex from '../../styles/Flex';
 import COLOR from '../../constants/colors';
 import FontSizes from '../../constants/FontSizes';
 import { css, keyframes } from '@emotion/react';
+import { theme } from '@emotion/react';
+
 
 interface isOpen {
   [key: string]: boolean;
@@ -11,6 +13,7 @@ interface isOpen {
 interface isOn {
   [key: string]: boolean;
 }
+
 
 interface isScrollOver {
   [key: string]: boolean;
@@ -29,6 +32,7 @@ const slowHidden = keyframes(
   `
 );
 
+
 const SearchContainer = styled.div`
   display: ${({ isOpen }: isOpen) => (isOpen ? 'block' : 'none')};
   left: 50%;
@@ -41,6 +45,7 @@ const SearchContainer = styled.div`
   padding: 1rem;
   z-index: 9999;
   background-color: ${COLOR.WHITE};
+
   animation: ${({ isScrollOver }: isScrollOver) =>
     isScrollOver === true
       ? css`
@@ -55,7 +60,6 @@ const TechsContainer = styled.div`
 `;
 
 const TechBtn = styled.button`
-  visibility: inherit;
   width: 8rem;
   border-radius: 100px;
   gap: 10px;
@@ -75,4 +79,6 @@ const TechBtn = styled.button`
   }
 `;
 
-export { SearchContainer, TechsContainer, TechBtn, slowHidden };
+
+export { SearchContainer, TechsContainer, TechBtn };
+
