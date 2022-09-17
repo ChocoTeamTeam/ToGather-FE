@@ -1,4 +1,4 @@
-import styled, { CSS } from '@emotion/styled';
+import styled from '@emotion/styled';
 import COLOR from '../../constants/colors';
 import Flex from '../../styles/Flex';
 
@@ -14,9 +14,9 @@ const NavigationContainer = styled.nav`
   position: fixed;
   width: 100%;
   height: 4rem;
-  ${Flex({alignItems:'center'})}
+  ${Flex({ alignItems: 'center' })}
   box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.08);
-  z-index:9999;
+  z-index: 9999;
   background-color: white;
 `;
 
@@ -56,6 +56,7 @@ const NavMenu = styled.div`
   ${Flex({ alignItems: 'center', justifyContent: 'center' })};
   width: ${({ widthProp }: menuWidthProp) => widthProp};
 `;
+
 const MenuBtn = styled.div`
   font-weight: 700;
   height: 50%;
@@ -75,7 +76,7 @@ const Favorites = styled.div`
   cursor: default;
   box-shadow: 0px 4px 5px ${COLOR.GRAY_100};
   padding: 1rem;
-  z-index:9999;
+  z-index: 9999;
   background-color: ${COLOR.WHITE};
 `;
 
