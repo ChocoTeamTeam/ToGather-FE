@@ -58,6 +58,12 @@ const NavMenu = styled.div`
   width: ${({ widthProp }: menuWidthProp) => widthProp};
 `;
 
+const MyPageMenu = styled.div`
+  flex: 1;
+  width: 100%;
+  ${Flex({ alignItems: 'center', justifyContent: 'center' })};
+`;
+
 const MenuBtn = styled.div`
   font-weight: 700;
   height: 50%;

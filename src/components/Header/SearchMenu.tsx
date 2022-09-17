@@ -4,18 +4,18 @@ import { useRecoilState } from 'recoil';
 import { searchTechsAtom } from '../../contexts/SeacrchTechsAtom';
 import { useEffect, useState } from 'react';
 import useCheckIsScrollOver from '../../hooks/useCheckIsScrollOver';
-
+import { Dispatch, SetStateAction } from 'react';
 
 interface SearchMenuProps {
   searchIsOpen: boolean;
+  isHidden: [boolean, Dispatch<SetStateAction<boolean>>];
 }
 
-
-const SearchMenu = ({ searchIsOpen }: SearchMenuProps) => {
-  const [isScrollOver, setIsScrollOver] = useState(false);
+const SearchMenu = ({ searchIsOpen, isHidden }: SearchMenuProps) => {
+  const [isScrollOver, setIsScrollOver] = isHidden;
 
   const handleScroll = () => {
-    useCheckIsScrollOver(setIsScrollOver, 15);
+    useCheckIsScrollOver(setIsScrollOver, 20);
   };
 
   useEffect(() => {
@@ -24,14 +24,6 @@ const SearchMenu = ({ searchIsOpen }: SearchMenuProps) => {
       window.removeEventListener('scroll', handleScroll);
     };
   });
-
-
-interface BtnStateType {
-
-  [key: string]: boolean;
-}
-
-const SearchMenu = ({ searchIsOpen }: SearchMenuProps) => {
 
   const [filteredTech, setFilterTech] = useRecoilState(searchTechsAtom);
 
@@ -45,7 +37,6 @@ const SearchMenu = ({ searchIsOpen }: SearchMenuProps) => {
       setFilterTech(copied);
     } else setFilterTech({ ...filteredTech, [tech]: true });
   };
-
 
   return (
     <SearchContainer isOpen={searchIsOpen} isScrollOver={isScrollOver}>
@@ -69,5 +60,3 @@ const SearchMenu = ({ searchIsOpen }: SearchMenuProps) => {
 };
 
 export default SearchMenu;
-
-export {};

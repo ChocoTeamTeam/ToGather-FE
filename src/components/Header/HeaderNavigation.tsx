@@ -38,6 +38,7 @@ const HeaderNavigation = () => {
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [favoriteIsOpen, setFavoriteIsOpen] = useState(false);
   const [gpsIsOpen, setGpsIsOpen] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
 
   const [myPageIsOpen, setMyPageIsOpen] = useState(false);
 
@@ -46,19 +47,18 @@ const HeaderNavigation = () => {
       <NavigationContainer>
         <NavigationBlock>
           <Wrapper>
-
             <Link to="/">로고</Link>
             <CategoryBlock>
-
               <NavMenu
                 widthProp={NavMenuWidth.search}
                 onMouseEnter={() => {
                   setSearchIsOpen(true);
+                  setIsHidden(false);
                 }}
                 onMouseLeave={() => setSearchIsOpen(false)}
               >
                 <MenuBtn onClick={() => setSearchIsOpen(true)}>공고 검색</MenuBtn>
-                <SearchMenu searchIsOpen={searchIsOpen} />
+                <SearchMenu searchIsOpen={searchIsOpen} isHidden={[isHidden, setIsHidden]} />
               </NavMenu>
               <NavMenu
                 widthProp={NavMenuWidth.favorite}
@@ -81,7 +81,7 @@ const HeaderNavigation = () => {
                 <GpsIcon />
               </GpsContainer>
             </CategoryBlock>
-            
+
             <UserBlock>
               <MyPageMenu
                 widthProp={NavMenuWidth.myPage}

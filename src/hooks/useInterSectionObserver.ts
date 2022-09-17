@@ -1,10 +1,26 @@
-import { EmotionJSX } from "@emotion/react/types/jsx-namespace";
+import { RefObject, useEffect } from 'react';
 
+const useObserveElement = (target: RefObject<HTMLDivElement>) => {
+  useEffect(() => {
+    const targetElement = target.current;
 
-const useInterSectionObserver = (element:EmotionJSX.Element) => {
-  return new IntersectionObserver(entries => {
-    console.log(entries);
-  })
-}
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+        }
+      });
+    });
 
-export default useInterSectionObserver
+    if (targetElement) {
+      observer.observe(targetElement);
+    }
+
+    return () => {
+      if (targetElement) {
+        observer.unobserve(targetElement);
+      }
+    };
+  }, [target.current]);
+};
+
+export default useObserveElement;
