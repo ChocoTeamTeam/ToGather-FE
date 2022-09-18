@@ -2,8 +2,8 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { signupToKenAtom, signupToKenSelector } from 'src/contexts/AuthAtom';
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { authAtom, authSelector } from 'src/contexts/AuthAtom';
 import { position, stacktech } from 'src/mocks/SelectTechs';
 import { SubmitButton } from 'src/styles/Button';
 import { InputLabel, InputText } from 'src/styles/Input';
@@ -12,22 +12,23 @@ import { InputBoxBlock, Title, Wrapper, ButtonBlock } from './RegisterModal.styl
 
 const RegisterModal = () => {
   const [formData, setFormData] = useRecoilState(registerAtom);
-  const signUpToken = useRecoilValue(signupToKenSelector);
+  const [authToken, setAuthToken] = useRecoilState(authAtom);
+  const reSetForm = useResetRecoilState(registerAtom);
 
   useEffect(() => {
-    return () => setFormData({ nickname: '', profileImage: '', techStackDtos: [] });
-  });
+    return () => reSetForm();
+  }, []);
 
   const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSelectChange = (targetValue: any, targetName: any) => {
-    const { name } = targetName;
-    const { value } = targetValue;
-    setFormData({ ...formData, [name]: value });
-  };
+  // const handleSelectChange = (targetValue: any, targetName: any) => {
+  //   const { name } = targetName;
+  //   const { value } = targetValue;
+  //   setFormData({ ...formData, [name]: value });
+  // };
 
   const handleMultiSelectChange = (targetValue: any, targetAction: any) => {
     const { action, name } = targetAction;
@@ -43,6 +44,23 @@ const RegisterModal = () => {
 
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+    console.log(formData);
+    console.log(authToken);
+
+    const data = axios
+      .post(`https://dokuny.blog/oauth/signup`, formData, {
+        headers: {
+          signUpToken: authToken.signUpToken,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        debugger;
+      })
+      .catch((err) => console.log(err));
+    console.log(data);
+    // data 안에 accessToken, refreshToken 들어 있다.
+    // window.dispatchEvent(new KeyboardEvent('keyup', { key: 'Escape' }));
   };
 
   return (

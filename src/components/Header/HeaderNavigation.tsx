@@ -25,17 +25,12 @@ import { isScrollOverAtom } from '../../contexts/isScrollOverAtom';
 import MyPageList from '../mypage/MyPageList';
 import { Link } from 'react-router-dom';
 import SearchMenu from './SearchMenu';
-import RegisterModal from '../Login/RegisterModal';
 
 const HeaderNavigation = () => {
   const openModal = useContext(modalContext)?.openModal;
 
   const handleOpenModal = () => {
     openModal?.(<LoginModal />);
-  };
-
-  const handleOpenModal2 = () => {
-    openModal?.(<RegisterModal />);
   };
 
   const [searchIsOpen, setSearchIsOpen] = useState(false);
@@ -109,7 +104,6 @@ const HeaderNavigation = () => {
                   <MyPageList myPageIsOpen={myPageIsOpen} />
                 </MyPageMenu>
                 <LoginButton onClick={handleOpenModal}>로그인</LoginButton>
-                <LoginButton onClick={handleOpenModal2}>회원가입</LoginButton>
               </UserBlock>
             </WrapRightNav>
           </Wrapper>

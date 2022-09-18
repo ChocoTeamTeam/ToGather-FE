@@ -31,7 +31,7 @@ const ProfileArticle = styled.article`
 
 const InputLabel = styled.label`
   display: block;
-  width: 10%;
+  width: 15%;
 `;
 
 const InputText = styled.input`

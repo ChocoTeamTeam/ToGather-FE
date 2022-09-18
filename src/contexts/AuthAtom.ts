@@ -13,13 +13,3 @@ export const authSelector = selector<data>({
   key: 'AUTH_SELECTOR',
   get: ({ get }) => get(authAtom),
 });
-
-export const signupToKenAtom = atom({
-  key: 'SIGINUP_TOKEN',
-  default: '',
-});
-
-export const signupToKenSelector = selector({
-  key: 'SIGINUP_GET_TOKEN',
-  get: ({ get }) => get(signupToKenAtom),
-});
