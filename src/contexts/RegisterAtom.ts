@@ -8,8 +8,8 @@ interface data {
   [key: string]: any;
 }
 
-export const userInputAtom = atom<data>({
-  key: 'USER_FORM',
+export const registerAtom = atom<data>({
+  key: 'REGISTER_FORM',
   default: {
     nickname: '',
     profileImage: '',

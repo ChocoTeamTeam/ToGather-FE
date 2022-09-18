@@ -20,6 +20,7 @@ const RegisterModal = () => {
     return () => reSetForm();
   }, []);
 
+
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     console.log(form);
