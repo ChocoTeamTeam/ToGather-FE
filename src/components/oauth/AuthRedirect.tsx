@@ -18,7 +18,6 @@ const AuthRedirect = () => {
 
   const getSignToken = async (social: string) => {
     let token;
-
     switch (social) {
       case 'google':
         token = location.state as string;
@@ -38,9 +37,9 @@ const AuthRedirect = () => {
     try {
       await checkLogin(social, token).then((res) => {
         // 헤더 토큰 기본 설정 해주기
-        // Api.headers.엑세스토큰키 = 엑세스토큰 값
         if (res.data.loginResult) {
           //기존 회원
+          // Api.headers.엑세스토큰키 = 엑세스토큰 값
           setAuthToken({ refreshToken: res.data.refreshToken, accessToken: res.data.accessToken });
           localStorage.setItem('refershToken', res.data.refreshToken);
           localStorage.setItem('accessToken', res.data.accessToken);

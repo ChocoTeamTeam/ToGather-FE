@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { userInputAtom } from './../contexts/RegisterAtom';
 
-const useInput = () => {
-  const [form, setForm] = useRecoilState(userInputAtom);
+const useInput = (initailValue: any) => {
+  const [form, setForm] = useState(initailValue);
 
   const changeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

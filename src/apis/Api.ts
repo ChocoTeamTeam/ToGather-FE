@@ -25,7 +25,6 @@ Api.interceptors.response.use(
       const prevRefreshToken = localStorage.getItem('refreshToken');
       if (prevRefreshToken) {
         // refersh token을 이용하여 access token 재발행 받기
-
         return axios
           .post('', {})
           .then((res) => {
@@ -33,7 +32,6 @@ Api.interceptors.response.use(
 
             localStorage.setItem('refreshToken', JSON.stringify(refreshToken));
             localStorage.setItem('accessToken', JSON.stringify(accessToken));
-
             // 헤더 토큰 기본 설정 해주기
             // originalRequest.headers.엑세스토큰키 = 엑세스토큰 값
           })

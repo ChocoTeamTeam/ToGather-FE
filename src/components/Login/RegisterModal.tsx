@@ -8,35 +8,29 @@ import useInput from 'src/hooks/useInput';
 import { position, stacktech } from 'src/mocks/SelectTechs';
 import { SubmitButton } from 'src/styles/Button';
 import { InputLabel, InputText } from 'src/styles/Input';
-import { userInputAtom } from '../../contexts/RegisterAtom';
 import { InputBoxBlock, Title, Wrapper, ButtonBlock } from './RegisterModal.styles';
 
 const RegisterModal = () => {
   const [authToken, setAuthToken] = useRecoilState(authAtom);
-  const reSetForm = useResetRecoilState(userInputAtom);
-  const { form, changeInput, multiSelectChange } = useInput();
-
-  useEffect(() => {
-    return () => reSetForm();
-  }, []);
+  const { form, changeInput, multiSelectChange } = useInput({});
 
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     console.log(form);
     console.log(authToken);
 
-    // const data = axios
-    //   .post(`https://dokuny.blog/oauth/signup`, formData, {
-    //     headers: {
-    //       signUpToken: authToken.signUpToken,
-    //     },
-    //   })
-    //   .then((data) => {
-    //     console.log(data);
-    //     setAuthToken(data.data);
-    //   })
-    //   .catch((err) => console.log(err));
-    // console.log(data);
+    const data = axios
+      .post(`https://dokuny.blog/oauth/signup`, form, {
+        headers: {
+          signUpToken: authToken.signUpToken,
+        },
+      })
+      .then((data) => {
+        console.log(data);
+        setAuthToken(data.data);
+      })
+      .catch((err) => console.log(err));
+    console.log(data);
     // data 안에 accessToken, refreshToken 들어 있다.
     window.dispatchEvent(new KeyboardEvent('keyup', { key: 'Escape' }));
   };

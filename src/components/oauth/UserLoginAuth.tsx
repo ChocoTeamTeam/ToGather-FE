@@ -9,6 +9,7 @@ const UserLoginAuth = () => {
   const openModal = useContext(modalContext)?.openModal;
 
   useEffect(() => {
+    console.log(authToken);
     if (authToken.signUpToken) {
       registerModalOpen();
     }
