@@ -5,11 +5,11 @@ interface data {
   profileImage: string;
   // position: string;
   techStackDtos: number[];
-  [key: string]: string | number[];
+  [key: string]: any;
 }
 
-export const registerAtom = atom<data>({
-  key: 'REGISTER_FORM',
+export const userInputAtom = atom<data>({
+  key: 'USER_FORM',
   default: {
     nickname: '',
     profileImage: '',
