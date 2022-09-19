@@ -20,6 +20,8 @@ import {
 } from './HeaderNavigation.styles';
 
 import { GpsIcon } from '../@icons';
+import { useRecoilValue } from 'recoil';
+import { isScrollOverAtom } from '../../contexts/isScrollOverAtom';
 import MyPageList from '../mypage/MyPageList';
 import { Link, useNavigate } from 'react-router-dom';
 import SearchMenu from './SearchMenu';
@@ -54,52 +56,53 @@ const HeaderNavigation = () => {
           <Wrapper>
             <Link to="/">로고</Link>
             <WrapRightNav>
-              {pathname === '/' && (
-                <CategoryBlock>
-                  <NavMenu
-                    widthProp={NavMenuWidth.search}
-                    onMouseEnter={() => {
-                      setSearchIsOpen(true);
-                      setIsHidden(false);
-                    }}
-                    onMouseLeave={() => setSearchIsOpen(false)}
-                    onClick={() => setSearchIsOpen(true)}
-                  >
-                    <MenuBtn>공고 검색</MenuBtn>
-                    <SearchMenu searchIsOpen={searchIsOpen} isHidden={[isHidden, setIsHidden]} />
-                  </NavMenu>
+              <CategoryBlock>
+                {pathname === '/' && (
+                  <>
+                    <NavMenu
+                      widthProp={NavMenuWidth.search}
+                      onMouseEnter={() => {
+                        setSearchIsOpen(true);
+                        setIsHidden(false);
+                      }}
+                      onMouseLeave={() => setSearchIsOpen(false)}
+                      onClick={() => setSearchIsOpen(true)}
+                    >
+                      <MenuBtn>공고 검색</MenuBtn>
+                      <SearchMenu searchIsOpen={searchIsOpen} isHidden={[isHidden, setIsHidden]} />
+                    </NavMenu>
 
-                  <NavMenu>
-                    <MenuBtn> 제목 검색 </MenuBtn>
-                    <SearchByText />
-                  </NavMenu>
+                    <NavMenu>
+                      <MenuBtn> 제목 검색 </MenuBtn>
+                      <SearchByText />
+                    </NavMenu>
+                    <GpsContainer
+                      widthProp={NavMenuWidth.gps}
+                      onMouseEnter={() => {
+                        setGpsIsOpen(true);
+                      }}
+                      onMouseLeave={() => setGpsIsOpen(false)}
+                      onClick={() => setGpsIsOpen(true)}
+                    >
+                      <GpsIcon />
+                    </GpsContainer>
+                  </>
+                )}
 
-                  <NavMenu
-                    widthProp={NavMenuWidth.favorite}
-                    onMouseEnter={() => {
-                      setFavoriteIsOpen(true);
-                    }}
-                    onMouseLeave={() => setFavoriteIsOpen(false)}
-                  >
-                    <MenuBtn onClick={() => setFavoriteIsOpen(true)}>즐겨찾기</MenuBtn>
-                    <Favorites favoriteIsOpen={favoriteIsOpen}></Favorites>
-                  </NavMenu>
-                  <NavMenu>
-                    <UploadStudyLink to="/uploadStudy">공고 등록</UploadStudyLink>
-                  </NavMenu>
-
-                  <GpsContainer
-                    widthProp={NavMenuWidth.gps}
-                    onMouseEnter={() => {
-                      setGpsIsOpen(true);
-                    }}
-                    onMouseLeave={() => setGpsIsOpen(false)}
-                    onClick={() => setGpsIsOpen(true)}
-                  >
-                    <GpsIcon />
-                  </GpsContainer>
-                </CategoryBlock>
-              )}
+                <NavMenu
+                  widthProp={NavMenuWidth.favorite}
+                  onMouseEnter={() => {
+                    setFavoriteIsOpen(true);
+                  }}
+                  onMouseLeave={() => setFavoriteIsOpen(false)}
+                >
+                  <MenuBtn onClick={() => setFavoriteIsOpen(true)}>즐겨찾기</MenuBtn>
+                  <Favorites favoriteIsOpen={favoriteIsOpen}></Favorites>
+                </NavMenu>
+                <NavMenu>
+                  <UploadStudyLink to="/uploadStudy">공고 등록</UploadStudyLink>
+                </NavMenu>
+              </CategoryBlock>
 
               <UserBlock>
                 <MyPageMenu
