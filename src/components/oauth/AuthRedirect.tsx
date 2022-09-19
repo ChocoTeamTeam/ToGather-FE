@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { authAtom, signupToKenAtom } from 'src/contexts/AuthAtom';
+import { authAtom } from 'src/contexts/AuthAtom';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import { checkLogin } from 'src/apis/auth';
 
 const AuthRedirect = () => {
   const [authToken, setAuthToken] = useRecoilState(authAtom);
-  const [signToken, setSignToken] = useRecoilState(signupToKenAtom);
   const navigation = useNavigate();
   const location = useLocation();
   const { social } = useParams();
@@ -15,12 +14,10 @@ const AuthRedirect = () => {
     if (social) {
       getSignToken(social);
     }
-    navigation('/');
   }, []);
 
   const getSignToken = async (social: string) => {
     let token;
-    // github, naver, kakao, google 분기 처리 후 서버와 통신 후 signToken 받아오기
     switch (social) {
       case 'google':
         token = location.state as string;
@@ -34,8 +31,27 @@ const AuthRedirect = () => {
         break;
       default:
         alert('새로고침 후 다시 시도해주세요.');
-        return;
+        return null;
     }
+
+    try {
+      await checkLogin(social, token).then((res) => {
+        // 헤더 토큰 기본 설정 해주기
+        if (res.data.loginResult) {
+          //기존 회원
+          // Api.headers.엑세스토큰키 = 엑세스토큰 값
+          setAuthToken({ refreshToken: res.data.refreshToken, accessToken: res.data.accessToken });
+          localStorage.setItem('refershToken', res.data.refreshToken);
+          localStorage.setItem('accessToken', res.data.accessToken);
+        } else {
+          //신규 회원
+          setAuthToken({ signUpToken: res.data.signUpToken });
+        }
+      });
+    } catch (e) {
+      console.error(`에러 :${e}`);
+    }
+    navigation('/');
   };
 
   return <div>로딩중</div>;
