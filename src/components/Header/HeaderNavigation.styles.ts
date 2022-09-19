@@ -70,6 +70,7 @@ const MyPageMenu = styled.div`
 
 const MenuBtn = styled.div`
   font-weight: 700;
+  width: 100%;
   height: 50%;
   ${Flex({ alignItems: 'center' })}
   border-radius:15%;

@@ -20,12 +20,11 @@ import {
 } from './HeaderNavigation.styles';
 
 import { GpsIcon } from '../@icons';
-import { useRecoilValue } from 'recoil';
-import { isScrollOverAtom } from '../../contexts/isScrollOverAtom';
 import MyPageList from '../mypage/MyPageList';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SearchMenu from './SearchMenu';
 import RegisterModal from '../Login/RegisterModal';
+import { useLocation } from 'react-router-dom';
 
 const HeaderNavigation = () => {
   const openModal = useContext(modalContext)?.openModal;
@@ -44,6 +43,9 @@ const HeaderNavigation = () => {
   const [isHidden, setIsHidden] = useState(false);
 
   const [myPageIsOpen, setMyPageIsOpen] = useState(false);
+  const { pathname } = useLocation();
+
+  console.log(pathname);
 
   return (
     <>
@@ -52,50 +54,52 @@ const HeaderNavigation = () => {
           <Wrapper>
             <Link to="/">로고</Link>
             <WrapRightNav>
-              <CategoryBlock>
-                <NavMenu
-                  widthProp={NavMenuWidth.search}
-                  onMouseEnter={() => {
-                    setSearchIsOpen(true);
-                    setIsHidden(false);
-                  }}
-                  onMouseLeave={() => setSearchIsOpen(false)}
-                  onClick={() => setSearchIsOpen(true)}
-                >
-                  <MenuBtn>공고 검색</MenuBtn>
-                  <SearchMenu searchIsOpen={searchIsOpen} isHidden={[isHidden, setIsHidden]} />
-                </NavMenu>
+              {pathname === '/' && (
+                <CategoryBlock>
+                  <NavMenu
+                    widthProp={NavMenuWidth.search}
+                    onMouseEnter={() => {
+                      setSearchIsOpen(true);
+                      setIsHidden(false);
+                    }}
+                    onMouseLeave={() => setSearchIsOpen(false)}
+                    onClick={() => setSearchIsOpen(true)}
+                  >
+                    <MenuBtn>공고 검색</MenuBtn>
+                    <SearchMenu searchIsOpen={searchIsOpen} isHidden={[isHidden, setIsHidden]} />
+                  </NavMenu>
 
-                <NavMenu>
-                  <MenuBtn> 제목 검색 </MenuBtn>
-                  <SearchByText />
-                </NavMenu>
+                  <NavMenu>
+                    <MenuBtn> 제목 검색 </MenuBtn>
+                    <SearchByText />
+                  </NavMenu>
 
-                <NavMenu
-                  widthProp={NavMenuWidth.favorite}
-                  onMouseEnter={() => {
-                    setFavoriteIsOpen(true);
-                  }}
-                  onMouseLeave={() => setFavoriteIsOpen(false)}
-                >
-                  <MenuBtn onClick={() => setFavoriteIsOpen(true)}>즐겨찾기</MenuBtn>
-                  <Favorites favoriteIsOpen={favoriteIsOpen}></Favorites>
-                </NavMenu>
-                <NavMenu>
-                  <UploadStudyLink to="/uploadStudy">공고 등록</UploadStudyLink>
-                </NavMenu>
+                  <NavMenu
+                    widthProp={NavMenuWidth.favorite}
+                    onMouseEnter={() => {
+                      setFavoriteIsOpen(true);
+                    }}
+                    onMouseLeave={() => setFavoriteIsOpen(false)}
+                  >
+                    <MenuBtn onClick={() => setFavoriteIsOpen(true)}>즐겨찾기</MenuBtn>
+                    <Favorites favoriteIsOpen={favoriteIsOpen}></Favorites>
+                  </NavMenu>
+                  <NavMenu>
+                    <UploadStudyLink to="/uploadStudy">공고 등록</UploadStudyLink>
+                  </NavMenu>
 
-                <GpsContainer
-                  widthProp={NavMenuWidth.gps}
-                  onMouseEnter={() => {
-                    setGpsIsOpen(true);
-                  }}
-                  onMouseLeave={() => setGpsIsOpen(false)}
-                  onClick={() => setGpsIsOpen(true)}
-                >
-                  <GpsIcon />
-                </GpsContainer>
-              </CategoryBlock>
+                  <GpsContainer
+                    widthProp={NavMenuWidth.gps}
+                    onMouseEnter={() => {
+                      setGpsIsOpen(true);
+                    }}
+                    onMouseLeave={() => setGpsIsOpen(false)}
+                    onClick={() => setGpsIsOpen(true)}
+                  >
+                    <GpsIcon />
+                  </GpsContainer>
+                </CategoryBlock>
+              )}
 
               <UserBlock>
                 <MyPageMenu
