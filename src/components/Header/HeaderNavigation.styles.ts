@@ -53,7 +53,7 @@ const CategoryBlock = styled.div`
 `;
 
 const WrapRightNav = styled.div`
-  ${Flex({ justifyContent: 'space-between', columnGap: '1rem' })}
+  ${Flex({ justifyContent: 'space-between', columnGap: '2rem' })}
   height:100%;
 `;
 
@@ -70,15 +70,15 @@ const MyPageMenu = styled.div`
 
 const MenuBtn = styled.div`
   font-weight: 700;
+  width: 100%;
   height: 50%;
-  ${Flex({ alignItems: 'center' })}
+  ${Flex({ alignItems: 'center', justifyContent: 'center' })}
   border-radius:15%;
   cursor: pointer;
 `;
 
 const Favorites = styled.div`
   display: ${({ favoriteIsOpen }: favoriteProps) => (favoriteIsOpen ? 'flex' : 'none')};
-  flex-direction: column;
   width: 10%;
   height: 200px;
   position: fixed;
