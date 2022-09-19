@@ -5,7 +5,7 @@ interface data {
   profileImage: string;
   // position: string;
   techStackDtos: number[];
-  [key: string]: string | number[];
+  [key: string]: any;
 }
 
 export const registerAtom = atom<data>({

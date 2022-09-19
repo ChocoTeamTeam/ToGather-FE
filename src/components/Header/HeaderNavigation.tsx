@@ -18,7 +18,6 @@ import {
   SearchByText,
   UploadStudyLink,
 } from './HeaderNavigation.styles';
-
 import { GpsIcon } from '../@icons';
 import { useRecoilValue } from 'recoil';
 import { isScrollOverAtom } from '../../contexts/isScrollOverAtom';
@@ -33,10 +32,6 @@ const HeaderNavigation = () => {
 
   const handleOpenModal = () => {
     openModal?.(<LoginModal />);
-  };
-
-  const handleOpenModal2 = () => {
-    openModal?.(<RegisterModal />);
   };
 
   const [searchIsOpen, setSearchIsOpen] = useState(false);
@@ -88,7 +83,6 @@ const HeaderNavigation = () => {
                     </GpsContainer>
                   </>
                 )}
-
                 <NavMenu
                   widthProp={NavMenuWidth.favorite}
                   onMouseEnter={() => {
@@ -102,6 +96,16 @@ const HeaderNavigation = () => {
                 <NavMenu>
                   <UploadStudyLink to="/uploadStudy">공고 등록</UploadStudyLink>
                 </NavMenu>
+                <GpsContainer
+                  widthProp={NavMenuWidth.gps}
+                  onMouseEnter={() => {
+                    setGpsIsOpen(true);
+                  }}
+                  onMouseLeave={() => setGpsIsOpen(false)}
+                  onClick={() => setGpsIsOpen(true)}
+                >
+                  <GpsIcon />
+                </GpsContainer>
               </CategoryBlock>
 
               <UserBlock>
