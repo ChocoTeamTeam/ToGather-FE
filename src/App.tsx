@@ -10,6 +10,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import HeaderNavigation from './components/Header/HeaderNavigation';
 import { useRecoilState } from 'recoil';
 import { userAtom } from './contexts/UserAtom';
+import UploadStudy from './components/UploadStudy/UploadStudy';
 
 const App = () => {
   const [user, setUser] = useRecoilState(userAtom);
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/chat" element={<ChatPage />} />
           <Route path="/oauth/:social" element={<AuthRedirectPage />} />
+          <Route path="/uploadStudy" element={<UploadStudy />} />
           <Route path="/*" element={<NotFoundPage />} />
         </Routes>
       </ModalProvider>

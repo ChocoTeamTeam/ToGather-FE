@@ -30,11 +30,6 @@ import { userAtom } from 'src/contexts/UserAtom';
 
 const HeaderNavigation = () => {
   const openModal = useContext(modalContext)?.openModal;
-
-  const handleOpenModal = () => {
-    openModal?.(<LoginModal />);
-  };
-
   const [searchIsOpen, setSearchIsOpen] = useState(false);
   const [favoriteIsOpen, setFavoriteIsOpen] = useState(false);
   const [gpsIsOpen, setGpsIsOpen] = useState(false);
@@ -44,6 +39,10 @@ const HeaderNavigation = () => {
   const resetUser = useResetRecoilState(userAtom);
   const { pathname } = useLocation();
   const navigate = useNavigate();
+
+  const handleOpenModal = () => {
+    openModal?.(<LoginModal />);
+  };
 
   const handleLogout = () => {
     // logout API 호출
