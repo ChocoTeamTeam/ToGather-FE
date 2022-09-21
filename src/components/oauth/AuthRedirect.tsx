@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import { authAtom } from 'src/contexts/AuthAtom';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { checkLogin } from 'src/apis/auth';
-import { userAtom } from 'src/contexts/UserAtom';
+import { userAtom, userSelector } from 'src/contexts/UserAtom';
 import Api from 'src/apis/Api';
 import { HeadersDefaults } from 'axios';
 
@@ -44,15 +44,15 @@ const AuthRedirect = () => {
       await checkLogin(social, token).then((res) => {
         if (res.data.loginResult) {
           //기존 회원
+          const resUser = {
+            id: res.data.id,
+            nickname: res.data.nicknam,
+            profileImage: res.data.profileImage,
+            techStackDtos: res.data.techStackDtos,
+          };
           setAuthToken({ refreshToken: res.data.refreshToken });
-          localStorage.setItem(
-            'user',
-            JSON.stringify({
-              id: res.data.id,
-              profileImage: res.data.profileImage,
-              techStackDtos: res.data.techStackDtos,
-            })
-          );
+          setUser(resUser);
+          localStorage.setItem('user', JSON.stringify(resUser));
           Api.defaults.headers = {
             Authorization: `Bearer ${res.data.accessToken}`,
           } as CommonHeaderProperties;
@@ -65,6 +65,7 @@ const AuthRedirect = () => {
     } catch (e) {
       console.error(`에러 :${e}`);
       alert('잘못된 접근 입니다.');
+      navigation('/');
     }
   };
 

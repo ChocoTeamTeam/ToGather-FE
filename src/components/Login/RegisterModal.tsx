@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
 import { userLogin } from 'src/apis/auth';
 import { authAtom, authSelector } from 'src/contexts/AuthAtom';
+import { userSelector } from 'src/contexts/UserAtom';
 import useInput from 'src/hooks/useInput';
 import { position, stacktech } from 'src/mocks/SelectTechs';
 import { SubmitButton } from 'src/styles/Button';
@@ -13,6 +14,7 @@ import { InputBoxBlock, Title, Wrapper, ButtonBlock } from './RegisterModal.styl
 
 const RegisterModal = () => {
   const [authToken, setAuthToken] = useRecoilState(authAtom);
+  const setUser = useSetRecoilState(userSelector);
   const { form, changeInput, multiSelectChange } = useInput({
     profileImage: '',
     nickname: '',
@@ -24,15 +26,15 @@ const RegisterModal = () => {
 
     const data = await userLogin(form, authToken.signUpToken)
       .then((res) => {
+        const user = {
+          id: res.data.id,
+          nickname: res.data.nickname,
+          profileImage: res.data.profileImage,
+          techStackDtos: res.data.techStackDtos,
+        };
         setAuthToken({ refreshToken: res.data.refreshToken });
-        localStorage.setItem(
-          'user',
-          JSON.stringify({
-            id: res.data.id,
-            profileImage: res.data.profileImage,
-            techStackDtos: res.data.techStackDtos,
-          })
-        );
+        setUser(user);
+        localStorage.setItem('user', JSON.stringify(user));
       })
       .catch((err) => console.log(err));
     window.dispatchEvent(new KeyboardEvent('keyup', { key: 'Escape' }));
