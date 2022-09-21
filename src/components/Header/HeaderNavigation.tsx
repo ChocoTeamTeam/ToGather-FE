@@ -50,7 +50,6 @@ const HeaderNavigation = () => {
     // })
     console.log('logout');
     localStorage.removeItem('user');
-    localStorage.removeItem('accessToken');
     localStorage.removeItem('refershToken');
     resetUser();
     navigate('/');

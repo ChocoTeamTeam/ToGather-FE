@@ -1,7 +1,10 @@
 import React from 'react';
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
+import { useRecoilValue } from 'recoil';
+import { userAtom } from 'src/contexts/UserAtom';
 import useInput from 'src/hooks/useInput';
 import { position, stacktech } from 'src/mocks/SelectTechs';
 import { CancelButton, SubmitButton } from 'src/styles/Button';
@@ -21,10 +24,16 @@ const UserInfo = () => {
     nickname: '',
     techStackDtos: [],
   });
+  const user = useRecoilValue(userAtom);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    // user API 콜
-  }, []);
+  // useEffect(() => {
+  //   if (!user.id) {
+  //     alert('잘못된 접근입니다.');
+  //     navigate('/');
+  //   }
+  //   // user API 콜
+  // }, []);
 
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     debugger;
