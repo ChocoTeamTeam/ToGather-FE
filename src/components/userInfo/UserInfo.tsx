@@ -35,6 +35,10 @@ const UserInfo = () => {
   //   // user API 콜
   // }, []);
 
+  useEffect(() => {
+    // user API 콜
+  }, []);
+
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     debugger;
     e.preventDefault();

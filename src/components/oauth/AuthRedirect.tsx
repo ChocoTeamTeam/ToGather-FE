@@ -21,6 +21,7 @@ const AuthRedirect = () => {
   useEffect(() => {
     if (social) {
       getSignToken(social);
+      navigation('/');
     }
   }, []);
 
