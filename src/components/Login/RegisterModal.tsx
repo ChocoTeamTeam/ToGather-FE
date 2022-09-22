@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useRecoilState, useRecoilValue, useResetRecoilState, useSetRecoilState } from 'recoil';
-import { userLogin } from 'src/apis/auth';
+import { signUp } from 'src/apis/auth';
 import { authAtom, authSelector } from 'src/contexts/AuthAtom';
 import { userSelector } from 'src/contexts/UserAtom';
 import useInput from 'src/hooks/useInput';
@@ -42,7 +42,7 @@ const RegisterModal = () => {
   const handleImageUpload = async () => {
     try {
       const imageUrl = await handleUpload();
-      await userLogin({ ...form, profileImage: imageUrl }, authToken.signUpToken)
+      signUp({ ...form, profileImage: imageUrl }, authToken.signUpToken)
         .then((res) => {
           const user = {
             id: res.data.id,

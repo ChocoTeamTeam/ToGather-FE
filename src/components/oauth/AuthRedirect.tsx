@@ -45,7 +45,7 @@ const AuthRedirect = () => {
           //기존 회원
           const resUser = {
             id: res.data.id,
-            nickname: res.data.nicknam,
+            nickname: res.data.nickname,
             profileImage: res.data.profileImage,
             techStackDtos: res.data.techStackDtos,
           };
