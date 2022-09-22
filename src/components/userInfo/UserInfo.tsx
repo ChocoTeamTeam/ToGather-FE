@@ -49,10 +49,6 @@ const UserInfo = () => {
     checkUser();
   }, []);
 
-  useEffect(() => {
-    // user API 콜
-  }, []);
-
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     console.log(form);

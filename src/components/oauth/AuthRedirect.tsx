@@ -21,7 +21,6 @@ const AuthRedirect = () => {
   useEffect(() => {
     if (social) {
       getSignToken(social);
-      navigation('/');
     }
   }, []);
 
@@ -60,13 +59,13 @@ const AuthRedirect = () => {
           //신규 회원
           setAuthToken({ signUpToken: res.data.signUpToken });
         }
-        navigation('/');
       });
     } catch (e) {
       console.error(`에러 :${e}`);
       alert('잘못된 접근 입니다.');
       navigation('/');
     }
+    navigation('/');
   };
 
   return <div>로딩중</div>;
