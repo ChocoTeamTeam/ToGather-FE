@@ -11,11 +11,15 @@ import UserInfoEdit from './UserInfoEdit';
 const UserInfo = () => {
   const [user, setUser] = useRecoilState(userSelector);
   const navigate = useNavigate();
-  const checkUser = () => {
+
+  useEffect(() => {
+    getUserById();
+  }, []);
+
+  const getUserById = () => {
     const localUser = localStorage.getItem('user');
     if (localUser) {
       const userId = user.id || JSON.parse(localUser).id;
-      console.log(userId);
       getUser(userId)
         .then((res) => setUser(res.data))
         .catch((err) => {
@@ -27,9 +31,9 @@ const UserInfo = () => {
     }
   };
 
-  useEffect(() => {
-    checkUser();
-  }, []);
+  console.log(user);
+
+  if (!user.id) return;
 
   return (
     <UserInfoBlock>
