@@ -1,6 +1,20 @@
 import { atom, selector } from 'recoil';
 import { IuserType } from 'src/components/type/userType';
 
+interface techStack {
+  value?: number;
+  id?: number;
+  name?: string;
+  label?: string;
+}
+
+interface data {
+  id: string;
+  techStackDtos: techStack[];
+  profileImage: string;
+  nickname: string;
+}
+
 export const userAtom = atom<IuserType>({
   key: 'USER',
   default: { id: '', techStackDtos: [], nickname: '', profileImage: '' },

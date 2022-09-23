@@ -12,6 +12,7 @@ const UserInfo = () => {
   const [user, setUser] = useRecoilState(userSelector);
   const navigate = useNavigate();
 
+
   useEffect(() => {
     getUserById();
   }, []);
@@ -31,9 +32,8 @@ const UserInfo = () => {
     }
   };
 
-  console.log(user);
-
   if (!user.id) return;
+
 
   return (
     <UserInfoBlock>

@@ -8,6 +8,7 @@ interface Tech {
   value: number;
   label: string;
 }
+
 const useInput = (initailValue: any) => {
   const [form, setForm] = useState<data>({});
 
@@ -37,9 +38,11 @@ const useInput = (initailValue: any) => {
       );
       setForm({ ...form, [name]: filterdData });
     } else {
+      debugger;
       for (let item of targetValue) {
         let { value } = item;
-        setForm({ ...form, [name]: targetValue });
+
+        setForm({ ...form, [name]: [...form[name]] });
       }
     }
   };

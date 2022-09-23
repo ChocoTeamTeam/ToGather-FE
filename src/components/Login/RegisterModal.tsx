@@ -13,6 +13,16 @@ import { SubmitButton } from 'src/styles/Button';
 import { InputLabel, InputText } from 'src/styles/Input';
 import { ProfileBoxBlock, ProfileContainer, ProfileWrapper } from 'src/styles/Profile';
 import { InputBoxBlock, Title, Wrapper, ButtonBlock } from './RegisterModal.styles';
+import {
+  InputBoxBlock,
+  Title,
+  Wrapper,
+  ButtonBlock,
+  ProfileWrapper,
+  ProfileBoxBlock,
+  ProfileContainer,
+} from './RegisterModal.styles';
+
 
 const RegisterModal = () => {
   const [fileImage, setFileImage] = useState('');
@@ -24,8 +34,6 @@ const RegisterModal = () => {
     nickname: '',
     techStackDtos: [],
   });
-
-  console.log(form);
 
   const handleImageView = async (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
@@ -76,6 +84,13 @@ const RegisterModal = () => {
           </ProfileWrapper>
           <label htmlFor="profileImage">업로드</label>
           <InputText id="profileImage" name="profileImage" type="file" onChange={handleImageView} />
+          <InputText
+            id="profileImage"
+            name="profileImage"
+            type="file"
+            value={form.profileImage}
+            onChange={handleImageView}
+          />
         </ProfileContainer>
       </ProfileBoxBlock>
       <InputBoxBlock>
