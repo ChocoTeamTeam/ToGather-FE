@@ -43,6 +43,9 @@ const RegisterModal = () => {
     try {
       const imageUrl = await handleUpload();
       const formTechStack = idNameToMultiSelect(form.techStackDtos);
+      /**
+       * const response = signUpService(form);
+       */
       signUp(
         {
           ...form,
@@ -60,14 +63,13 @@ const RegisterModal = () => {
           };
           setAuthToken({ refreshToken: res.data.refreshToken });
           setUser(user);
-          Api.defaults.headers = {
-            Authorization: `Bearer ${res.data.accessToken}`,
-          } as CommonHeaderProperties;
+          Api.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`;
         })
         .catch((err) => console.log(err));
     } catch (err) {
       console.error('전송 오류 form 데이터 확인');
     }
+
     window.dispatchEvent(new KeyboardEvent('keyup', { key: 'Escape' }));
   };
 

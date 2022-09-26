@@ -12,8 +12,6 @@ const UserInfo = () => {
   const [user, setUser] = useRecoilState(userSelector);
   const navigate = useNavigate();
 
-  console.log(user);
-
   const getUserById = () => {
     if (!user.id) {
       alert('잘못된 접근입니다.');
@@ -30,9 +28,7 @@ const UserInfo = () => {
 
   useEffect(() => {
     getUserById();
-  }, []);
-
-  if (!user.id) return;
+  }, [user.id]);
 
   return (
     <UserInfoBlock>

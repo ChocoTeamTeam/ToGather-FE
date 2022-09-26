@@ -38,6 +38,16 @@ const HeaderNavigation = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
+  const refersh = async () => {
+    /* const response = await api.post('refresh');
+     * const accessToken = response.accessToken;
+     * Api.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`;
+     *
+     */
+  };
+
+  useEffect(() => {}, []);
+
   const handleOpenModal = () => {
     openModal?.(<LoginModal />);
   };
@@ -74,7 +84,6 @@ const HeaderNavigation = () => {
                       <MenuBtn>공고 검색</MenuBtn>
                       <SearchMenu searchIsOpen={searchIsOpen} isHidden={[isHidden, setIsHidden]} />
                     </NavMenu>
-
                     <NavMenu>
                       <MenuBtn> 제목 검색 </MenuBtn>
                       <SearchByText />

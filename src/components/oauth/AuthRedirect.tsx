@@ -38,9 +38,7 @@ const AuthRedirect = () => {
           };
           setAuthToken({ refreshToken: res.data.refreshToken });
           setUser(resUser);
-          Api.defaults.headers = {
-            Authorization: `Bearer ${res.data.accessToken}`,
-          } as CommonHeaderProperties;
+          Api.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`;
         } else {
           //신규 회원
           if (res.data.errMessage) {
