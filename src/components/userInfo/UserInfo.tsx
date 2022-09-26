@@ -12,28 +12,27 @@ const UserInfo = () => {
   const [user, setUser] = useRecoilState(userSelector);
   const navigate = useNavigate();
 
+  console.log(user);
+
+  const getUserById = () => {
+    if (!user.id) {
+      alert('잘못된 접근입니다.');
+      navigate('/');
+      return;
+    }
+    const userId = user.id;
+    getUser(userId)
+      .then((res) => setUser(res.data))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   useEffect(() => {
     getUserById();
   }, []);
 
-  const getUserById = () => {
-    const localUser = localStorage.getItem('user');
-    if (localUser) {
-      const userId = user.id || JSON.parse(localUser).id;
-      getUser(userId)
-        .then((res) => setUser(res.data))
-        .catch((err) => {
-          console.log(err);
-        });
-    } else {
-      alert('잘못된 접근입니다.');
-      navigate('/');
-    }
-  };
-
   if (!user.id) return;
-
 
   return (
     <UserInfoBlock>

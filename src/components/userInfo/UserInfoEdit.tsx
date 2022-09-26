@@ -42,6 +42,17 @@ const UserInfoEdit = ({ user }: props) => {
   const resetUser = useResetRecoilState(userAtom);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    setFileImage(`${import.meta.env.VITE_AWS_S3_URL}${user.profileImage}`);
+  }, [user.profileImage]);
+
+  const handleImageView = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setFileImage(URL.createObjectURL(e.target.files[0]));
+      handleFileInput(e);
+    }
+  };
+
   const handleSubmit = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
     console.log(form);
@@ -68,13 +79,7 @@ const UserInfoEdit = ({ user }: props) => {
             )}
           </ProfileWrapper>
           <label htmlFor="profileImage">업로드</label>
-          <InputText
-            id="profileImage"
-            name="profileImage"
-            type="file"
-            // value={form.profileImage}
-            // onChange={handleImageView}
-          />
+          <InputText id="profileImage" name="profileImage" type="file" onChange={handleImageView} />
         </ProfileContainer>
       </ProfileBoxBlock>
       <InputBoxBlock>
