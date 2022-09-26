@@ -1,5 +1,13 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
+import axios, { HeadersDefaults } from 'axios';
+import React, { useEffect, useState } from 'react';
+import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { signUp } from 'src/apis/auth';
+import { authAtom, authSelector } from 'src/contexts/AuthAtom';
+import { userSelector } from 'src/contexts/UserAtom';
 import { stacktech } from 'src/mocks/SelectTechs';
 import { SubmitButton } from 'src/styles/Button';
 import { InputLabel, InputText } from 'src/styles/Input';
@@ -8,6 +16,11 @@ import { InputBoxBlock, Title, Wrapper, ButtonBlock } from './RegisterModal.styl
 import useInput from 'src/hooks/useInput';
 import S3UploadImage from 'src/hooks/useS3UploadImage';
 import AuthService from 'src/service/AuthService';
+import Api from 'src/apis/Api';
+
+interface CommonHeaderProperties extends HeadersDefaults {
+  Authorization: string;
+}
 
 const RegisterModal = () => {
   const [fileImage, setFileImage] = useState('');

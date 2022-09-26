@@ -29,6 +29,7 @@ import { logout, refresh } from 'src/apis/auth';
 import Api from 'src/apis/Api';
 import AuthService from 'src/service/AuthService';
 
+
 const HeaderNavigation = () => {
   const openModal = useContext(modalContext)?.openModal;
   const [searchIsOpen, setSearchIsOpen] = useState(false);
@@ -51,6 +52,16 @@ const HeaderNavigation = () => {
   useEffect(() => {
     refersh();
   }, [user.nickname]);
+
+  const refersh = async () => {
+    /* const response = await api.post('refresh');
+     * const accessToken = response.accessToken;
+     * Api.defaults.headers.common['Authorization'] = `Bearer ${res.data.accessToken}`;
+     *
+     */
+  };
+
+  useEffect(() => {}, []);
 
   const handleOpenModal = () => {
     openModal?.(<LoginModal />);
