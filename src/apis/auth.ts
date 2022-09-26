@@ -19,6 +19,11 @@ export const signUp = (data: any, token: string) => {
   });
 };
 
-export const refresh = (refreshToken: string) => Api.post(`/oauth/refresh`, refreshToken);
+export const refresh = (refreshToken: string) =>
+  Api.post(`/oauth/refresh`, refreshToken, {
+    headers: {
+      'Content-Type': 'text/plain',
+    },
+  });
 
-export const logout = () => Api.post(`/logout`);
+export const logout = () => Api.post(`/oauth/logout`);

@@ -3,7 +3,7 @@ import Api from 'src/apis/Api';
 import { checkLogin, refresh, signUp } from 'src/apis/auth';
 import { authAtom } from 'src/contexts/AuthAtom';
 import { userAtom } from 'src/contexts/UserAtom';
-import { useCookies } from 'react-cookie';
+import { getCookie, setCookie } from 'src/lib/cookies';
 
 interface Iform {
   profileImage: string;
@@ -12,7 +12,6 @@ interface Iform {
 }
 
 const AuthService = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['refreshToken']);
   const [authToken, setAuthToken] = useRecoilState(authAtom);
   const [user, setUser] = useRecoilState(userAtom);
 
@@ -29,8 +28,8 @@ const AuthService = () => {
       };
       setCookie('refreshToken', response.data.refreshToken, {
         path: '/',
-        secure: true,
-        httpOnly: true,
+        // secure: true,
+        // httpOnly: true,
       });
 
       setUser(resUser);
@@ -52,8 +51,6 @@ const AuthService = () => {
 
     setCookie('refreshToken', response.data.refreshToken, {
       path: '/',
-      secure: true,
-      httpOnly: true,
     });
     setUser(resUser);
     Api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
@@ -62,16 +59,16 @@ const AuthService = () => {
   };
 
   const refreshService = async () => {
-    const refreshCookie = cookies.refreshToken;
+    const refreshCookie = getCookie('refreshToken');
+
     const response = await refresh(refreshCookie);
+
     try {
       if (response.data.status === 401) {
         throw new Error(response.data.errorMessage);
       }
       setCookie('refreshToken', response.data.refreshToken, {
         path: '/',
-        secure: true,
-        httpOnly: true,
       });
       Api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
     } catch (e) {

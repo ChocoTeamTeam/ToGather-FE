@@ -58,11 +58,12 @@ const HeaderNavigation = () => {
 
   const handleLogout = () => {
     // logout API 호출
-    logout().then((res) => {});
+    logout().then((res) => {
+      localStorage.removeItem('refershToken');
+      resetUser();
+      navigate('/');
+    });
     console.log('logout');
-    localStorage.removeItem('refershToken');
-    resetUser();
-    navigate('/');
   };
 
   return (
