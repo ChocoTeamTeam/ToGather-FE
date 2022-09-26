@@ -19,6 +19,7 @@ interface CommonHeaderProperties extends HeadersDefaults {
   Authorization: string;
 }
 
+
 const RegisterModal = () => {
   const [fileImage, setFileImage] = useState('');
   const [authToken, setAuthToken] = useRecoilState(authAtom);

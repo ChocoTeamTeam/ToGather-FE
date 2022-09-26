@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
+
+interface Data {
+  [key: string]: any;
+}
+
 interface Tech {
   value: number;
   label: string;
 }
+
 
 const useInput = (initailValue: any) => {
   const [form, setForm] = useState(initailValue);
