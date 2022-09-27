@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Select from 'react-select';
 import axios, { HeadersDefaults } from 'axios';
-import React, { useEffect, useState } from 'react';
-import Select from 'react-select';
 import CreatableSelect from 'react-select/creatable';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { signUp } from 'src/apis/auth';
