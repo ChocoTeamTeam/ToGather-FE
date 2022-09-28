@@ -7,6 +7,7 @@ import {
   StudyTitle,
   StudyViewer,
 } from './StudyList.style';
+import StudyTechs from './StudyTechs';
 import { StudytechsBlock } from './StudyTechs.style';
 
 interface Iprops {
@@ -19,8 +20,8 @@ interface Iprops {
 
 const StudyComponent = ({ id, techs, deadline, title, author }: Iprops) => {
   return (
-    <Study key={id} to="/">
-      <StudytechsBlock techsList={techs} />
+    <Study key={id} to={'/projectDetail/' + id}>
+      <StudyTechs techsList={techs} />
       <StudyDeadline>
         마감 예정일
         <span aria-hidden="true">|</span>
