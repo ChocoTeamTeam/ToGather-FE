@@ -39,7 +39,7 @@ const baseImageUrl = `${import.meta.env.VITE_AWS_S3_URL}/`;
 
 const UserInfoEdit = ({ user }: props) => {
   const { form, changeInput, multiSelectChange, idNameToMultiSelect } = useInput({
-    ...user,
+    ...user
   });
   const { handleFileInput, handleUpload } = S3UploadImage('profile/');
   const resetUser = useResetRecoilState(userAtom);
@@ -58,6 +58,7 @@ const UserInfoEdit = ({ user }: props) => {
         imageUrl = await handleUpload();
         imageUrl = baseImageUrl + imageUrl;
       }
+
       const formTechStack = idNameToMultiSelect(form.techStackDtos);
       await editUser(user.id, {
         ...form,
