@@ -5,6 +5,7 @@ declare module 'uuid';
 declare module 'multer';
 declare module 'multer-s3';
 declare module 'vite-plugin-svgr';
+declare module 'react-stomp';
 
 declare interface IconProps {
   borderColor?: string;

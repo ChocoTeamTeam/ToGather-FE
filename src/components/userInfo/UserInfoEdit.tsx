@@ -18,6 +18,7 @@ import Select from 'react-select';
 import S3UploadImage from 'src/hooks/useS3UploadImage';
 import ProfileImage from '../profileImage/ProfileImage';
 import techTable from 'src/contexts/TechsTable';
+import UserService from 'src/service/UserService';
 
 interface tech {
   value?: number;
@@ -39,11 +40,12 @@ const baseImageUrl = `${import.meta.env.VITE_AWS_S3_URL}/`;
 
 const UserInfoEdit = ({ user }: props) => {
   const { form, changeInput, multiSelectChange, idNameToMultiSelect } = useInput({
-    ...user
+    ...user,
   });
   const { handleFileInput, handleUpload } = S3UploadImage('profile/');
   const resetUser = useResetRecoilState(userAtom);
   const navigate = useNavigate();
+  const { updateUserByIdService } = UserService();
 
   const handleChangeProfileImage = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleFileInput(e);
@@ -60,14 +62,12 @@ const UserInfoEdit = ({ user }: props) => {
       }
 
       const formTechStack = idNameToMultiSelect(form.techStackDtos);
-      await editUser(user.id, {
-        ...form,
-        profileImage: imageUrl,
-        techStackDtos: formTechStack,
-      }).then((res) => {
-        alert('성공');
-        navigate('/');
-      });
+      const formData = { ...form, profileImage: imageUrl, techStackDtos: formTechStack };
+
+      const response = await updateUserByIdService(user.id, formData);
+
+      alert('성공');
+      navigate('/');
     } catch (e) {
       console.error(e);
     }

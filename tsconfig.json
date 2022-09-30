@@ -28,6 +28,6 @@
       "src/*": ["./src/*"]
     }
   },
-  "include": ["src", "config.d.ts"]
+  "include": ["src", "config.d.ts", "src/lib/sockjs.min.js"]
   //타입 선언 파일을 추가합니다. 필요 시 타입 선언 파일에서 타입을 추가바랍니다 - 서준
 }

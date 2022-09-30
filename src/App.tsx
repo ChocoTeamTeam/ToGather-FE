@@ -5,12 +5,13 @@ import { CookiesProvider } from 'react-cookie';
 import MainPage from './pages/MainPage';
 import ModalProvider from './contexts/ModalContext';
 import AuthRedirectPage from './pages/AuthRedirectPage';
-import ChatPage from './pages/ChatPage';
+import ChatRoomPage from './pages/ChatRoomPage';
 import MyPage from './pages/MyPage';
 import NotFoundPage from './pages/NotFoundPage';
 import HeaderNavigation from './components/Header/HeaderNavigation';
 import UploadStudy from './pages/UploadStudy';
 import MyProjectPage from './pages/MyProjectPage';
+import ChatPage from './pages/ChatPage';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             <Route path="/" element={<MainPage />} />
             <Route path="/mypage" element={<MyPage />} />
             <Route path="/myProject" element={<MyProjectPage />} />
+            <Route path="/chatRoom" element={<ChatRoomPage />} />
             <Route path="/chat" element={<ChatPage />} />
             <Route path="/oauth/:social" element={<AuthRedirectPage />} />
             <Route path="/uploadStudy" element={<UploadStudy />} />

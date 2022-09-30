@@ -30,6 +30,7 @@ import { logout, refresh } from 'src/apis/auth';
 import AuthService from 'src/service/AuthService';
 import Logo from '../@icons/Logo';
 import { UserLocationAtom } from 'src/contexts/UserLocationAtom';
+import { authAtom } from 'src/contexts/AuthAtom';
 
 const HeaderNavigation = () => {
   const openModal = useContext(modalContext)?.openModal;

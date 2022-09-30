@@ -33,6 +33,10 @@ const AuthService = () => {
       });
 
       setUser(resUser);
+      setAuthToken({
+        refreshToken: response.data.refreshToken,
+        accessToken: response.data.accessToken,
+      });
       Api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
     } else if (response.data.errorMessage) alert(response.data.errorMessage);
     else if (response.data.signUpToken) setAuthToken({ signUpToken: response.data.signUpToken });
@@ -53,7 +57,10 @@ const AuthService = () => {
       path: '/',
     });
     setUser(resUser);
-    setAuthToken({});
+    setAuthToken({
+      refreshToken: response.data.refreshToken,
+      accessToken: response.data.accessToken,
+    });
     Api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
 
     return response;
@@ -71,6 +78,11 @@ const AuthService = () => {
       setCookie('refreshToken', response.data.refreshToken, {
         path: '/',
       });
+      setAuthToken({
+        refreshToken: response.data.refreshToken,
+        accessToken: response.data.accessToken,
+      });
+      localStorage.setItem('accessToken', JSON.stringify(response.data.accessToken));
       Api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
     } catch (e) {
       console.error(`에러 : ${e}`);
@@ -86,7 +98,7 @@ const AuthService = () => {
     localStorage.removeItem('user');
 
     Api.defaults.headers.common['Authorization'] = '';
-
+    setAuthToken({});
     return response;
   };
 
