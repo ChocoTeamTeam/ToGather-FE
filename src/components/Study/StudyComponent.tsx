@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Study,
   StudyAuthor,
@@ -19,8 +20,8 @@ interface Iprops {
 
 const StudyComponent = ({ id, techs, deadline, title, author }: Iprops) => {
   return (
-    <Study to="/">
-      {/* <StudyTechs techsList={techs} /> */}
+    <Study to={`/studyDetail/${id}`} onClick={() => console.log(1)}>
+      <StudyTechs techsList={techs} />
       <StudyDeadline>
         마감 예정일
         <span aria-hidden="true">|</span>
@@ -32,7 +33,7 @@ const StudyComponent = ({ id, techs, deadline, title, author }: Iprops) => {
           <img src="/" width="36px" height="36px" />
           {author}
         </StudyAuthor>
-        <StudyViewer>viewerArea</StudyViewer>
+        <StudyViewer>{author}</StudyViewer>
       </StudyFooter>
     </Study>
   );
