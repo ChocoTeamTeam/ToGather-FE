@@ -74,7 +74,7 @@ const HeaderNavigation = () => {
       <NavigationContainer>
         <NavigationBlock>
           <Wrapper>
-            <Link to="/"></Link>
+            <Link to="/">로고</Link>
             <WrapRightNav>
               <CategoryBlock>
                 {pathname === '/' && (
