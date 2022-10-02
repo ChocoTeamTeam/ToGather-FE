@@ -13,12 +13,15 @@ const MessagContainereWrapper = styled.div`
   margin: 0 auto;
 `;
 
-const MessageRoomName = styled.span`
+const MessageRoomName = styled.div`
+  margin-bottom: 3rem;
   font-size: 24px;
+  font-weight: 600;
+  color: ${COLOR.LOGO_COLOR};
 `;
 
 const MessageBoxBlock = styled.div`
-  padding-top: 10rem;
+  padding-top: 5rem;
   padding-left: 5rem;
   padding-right: 5rem;
 `;

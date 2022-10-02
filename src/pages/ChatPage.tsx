@@ -29,6 +29,7 @@ const ChatPage = ({ roomId, projectId }: IProps) => {
   const user = useRecoilValue(userAtom);
   const [content, setContent] = useState('');
   const [message, setMessage] = useState<IMessage[]>([]);
+  const [roomName, setRoomName] = useState('');
   const navigate = useNavigate();
 
   const subscribe = () => {
@@ -64,6 +65,7 @@ const ChatPage = ({ roomId, projectId }: IProps) => {
       if (response.data.messages) {
         console.log('api 호출');
         setMessage(response.data.messages.reverse());
+        setRoomName(response.data.roomName);
       }
     } catch (e) {
       console.log(e);
@@ -133,6 +135,7 @@ const ChatPage = ({ roomId, projectId }: IProps) => {
 
   return (
     <ChatContainer
+      roomName={roomName}
       message={message}
       content={content}
       sendMessage={handleSendMessage}
