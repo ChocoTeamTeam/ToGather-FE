@@ -44,7 +44,13 @@ const AuthService = () => {
   };
 
   const registerService = async (form: Iform) => {
+    debugger;
+
     const response = await signUp(form, authToken.signUpToken);
+
+    if (response.data.status === 400) {
+      alert(response.data.errorMessage);
+    }
 
     const resUser = {
       id: response.data.id,
@@ -68,6 +74,7 @@ const AuthService = () => {
 
   const refreshService = async () => {
     const refreshCookie = getCookie('refreshToken');
+    console.log('refresh');
 
     const response = await refresh(refreshCookie);
 
@@ -82,7 +89,6 @@ const AuthService = () => {
         refreshToken: response.data.refreshToken,
         accessToken: response.data.accessToken,
       });
-      localStorage.setItem('accessToken', JSON.stringify(response.data.accessToken));
       Api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
     } catch (e) {
       console.error(`에러 : ${e}`);
@@ -92,7 +98,7 @@ const AuthService = () => {
   const logoutService = async () => {
     const response = await logout();
 
-    setCookie('refershToken', '', {
+    setCookie('refreshToken', '', {
       path: '/',
     });
     localStorage.removeItem('user');

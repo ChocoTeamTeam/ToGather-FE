@@ -65,7 +65,6 @@ const UserInfoEdit = ({ user }: props) => {
       const formData = { ...form, profileImage: imageUrl, techStackDtos: formTechStack };
 
       const response = await updateUserByIdService(user.id, formData);
-
       alert('성공');
       navigate('/');
     } catch (e) {

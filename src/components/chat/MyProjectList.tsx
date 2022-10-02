@@ -29,11 +29,9 @@ const MyProjectList = ({ myProject }: Props) => {
           <MyProjectInner key={idx}>
             <Title to="/">프로젝트 제목</Title>
             <ChatRoomBlock>
-              <ChatRoomButton>채팅방 1 입장</ChatRoomButton>
-              <ChatRoomButton>채팅방 3 입장</ChatRoomButton>
-              <ChatRoomButton>채팅방 2 입장</ChatRoomButton>
-              <ChatRoomButton>채팅방 4 입장</ChatRoomButton>
-              <ChatRoomButton>채팅방 5 입장</ChatRoomButton>
+              <ChatRoomButton to="/chat">채팅방 1 입장</ChatRoomButton>
+              <ChatRoomButton to="/chat">채팅방 3 입장</ChatRoomButton>
+              <ChatRoomButton to="/chat">채팅방 2 입장</ChatRoomButton>
             </ChatRoomBlock>
           </MyProjectInner>
         ))}

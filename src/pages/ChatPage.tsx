@@ -1,82 +1,145 @@
-import { useEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import * as StompJs from '@stomp/stompjs';
-import SockJsClient from 'react-stomp';
 import { useRecoilValue } from 'recoil';
-import { authAtom } from 'src/contexts/AuthAtom';
 import { Client } from '@stomp/stompjs';
+import { authAtom } from '../contexts/AuthAtom';
+import { getChatList } from 'src/apis/chat';
+import { useNavigate } from 'react-router-dom';
+import ChatContainer from 'src/components/chat/ChatContainer';
+import { userAtom } from 'src/contexts/UserAtom';
+import { currentTime } from 'src/lib/time';
+
+interface IProps {
+  roomId: string;
+  projectId: string;
+}
+
+interface IMessage {
+  nickname: string;
+  profileImage: string;
+  message: string;
+  time: string;
+  timess: string;
+}
 
 let client: Client | null = null;
 
-const accessToken = JSON.parse(localStorage.getItem('accessToken'));
-
-const ChatPage = () => {
-  // const auth = useRecoilValue(authAtom);
+const ChatPage = ({ roomId, projectId }: IProps) => {
+  const auth = useRecoilValue(authAtom);
+  const user = useRecoilValue(userAtom);
   const [content, setContent] = useState('');
+  const [message, setMessage] = useState<IMessage[]>([]);
+  const navigate = useNavigate();
 
   const subscribe = () => {
     if (client != null) {
-      // client.subscribe('/from/liar/start/1', (data: any) => {
-      //   const newMessage: string = JSON.parse(data.body).message as string;
-      //   addContent(newMessage);
-      // });
+      client.subscribe(`/topic/room.${1}`, (data: any) => {
+        const newMessage: IMessage = JSON.parse(data.body);
+        console.log(newMessage);
+        setMessage((prevData) => [...prevData, { ...newMessage, time: newMessage.timess }]);
+      });
     }
   };
 
   useEffect(() => {
-    connect();
-    return () => disConnect();
+    handleGetChatList();
   }, []);
 
-  console.log(accessToken);
+  useEffect(() => {
+    if (auth.accessToken) {
+      connect();
+    }
+    return () => disConnect();
+  }, [auth.accessToken]);
+
+  const handleGetChatList = async () => {
+    try {
+      const response = await getChatList('1', '1');
+
+      if (response.data?.errorMessage) {
+        alert(response.data.errorMessage);
+        navigate('/');
+      }
+
+      if (response.data.messages) {
+        console.log('api 호출');
+        setMessage(response.data.messages.reverse());
+      }
+    } catch (e) {
+      console.log(e);
+      alert('채팅 데이터를 가져오지 못했습니다.');
+    }
+  };
 
   const connect = () => {
+    console.log(auth.accessToken);
     client = new StompJs.Client({
-      brokerURL: 'wss://fd7f-218-146-18-100.jp.ngrok.io/stomp/chat',
+      brokerURL: 'wss://dokuny.blog/stomp/chat',
       connectHeaders: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${auth.accessToken}`,
       },
       debug: function (str) {
-        console.log(str);
+        // console.log(str);
       },
       onConnect: () => {
+        console.log('connect');
         subscribe();
       },
       onStompError: function (frame) {
         console.log('Broker reported error: ' + frame.headers['message']);
         console.log('Additional details: ' + frame.body);
       },
-      // reconnectDelay: 5000, //자동 재 연결
-      // heartbeatIncoming: 4000,
-      // heartbeatOutgoing: 4000,
+      reconnectDelay: 5000, //자동 재 연결
+      heartbeatIncoming: 4000,
+      heartbeatOutgoing: 4000,
     });
-
     client.activate();
-  };
-
-  const handler = (message: string) => {
-    if (client != null) {
-      if (!client.connected) return;
-
-      client.publish({
-        destination: '/to/liar/start/1',
-        body: JSON.stringify({
-          message: message,
-        }),
-      });
-    }
-  };
-
-  const addContent = (message: string) => {
-    setContent(content.concat(message));
   };
 
   const disConnect = () => {
     if (client != null) {
+      console.log('disConnect');
       if (client.connected) client.deactivate();
     }
   };
 
-  return <div>채팅 왜 안돼?</div>;
+  const handleSendMessage = () => {
+    if (client != null) {
+      if (!client.connected) return;
+      const time = currentTime();
+      console.log(time);
+      client.publish({
+        destination: `/app/chat.${1}.message`,
+        body: JSON.stringify({
+          message: content,
+          nickname: user.nickname,
+          profileImage: user.profileImage,
+          // time: time,
+        }),
+      });
+      setContent('');
+    }
+  };
+
+  const inputKeyPress = (e: KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSendMessage();
+    }
+  };
+
+  const inputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setContent(e.target.value);
+  };
+
+  return (
+    <ChatContainer
+      message={message}
+      content={content}
+      sendMessage={handleSendMessage}
+      inputChange={inputChange}
+      keyPress={inputKeyPress}
+    />
+  );
 };
 
 export default ChatPage;

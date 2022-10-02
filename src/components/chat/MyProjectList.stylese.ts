@@ -28,7 +28,7 @@ const ChatRoomBlock = styled.div`
   width: 100%;
 `;
 
-const ChatRoomButton = styled.button`
+const ChatRoomButton = styled(Link)`
   width: 100%;
   height: 12%;
   background: white;
