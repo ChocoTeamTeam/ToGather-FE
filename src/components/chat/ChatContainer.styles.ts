@@ -13,6 +13,7 @@ const MessagContainereWrapper = styled.div`
   margin: 0 auto;
 `;
 
+
 const MessageRoomName = styled.div`
   margin-bottom: 3rem;
   font-size: 24px;

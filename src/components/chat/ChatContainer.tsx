@@ -42,6 +42,7 @@ const ChatContainer = ({
   content,
   keyPress,
 }: IProps) => {
+const ChatContainer = ({ message, sendMessage, inputChange, content, keyPress }: IProps) => {
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

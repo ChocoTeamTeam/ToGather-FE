@@ -15,9 +15,10 @@ import {
   UserBlock,
   MyPageMenu,
   WrapRightNav,
-  SearchByText,
   UploadStudyLink,
+  WrapTextMenu,
 } from './HeaderNavigation.styles';
+import TextSearch from './TextSearch';
 import { GpsIcon } from '../@icons/Images';
 import { useRecoilValue, useResetRecoilState } from 'recoil';
 import MyPageList from '../mypage/MyPageList';
@@ -35,6 +36,7 @@ import { authAtom } from 'src/contexts/AuthAtom';
 const HeaderNavigation = () => {
   const openModal = useContext(modalContext)?.openModal;
   const [searchIsOpen, setSearchIsOpen] = useState(false);
+  const [textIsOpen, setTextIsOpen] = useState(false);
   const [favoriteIsOpen, setFavoriteIsOpen] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [myPageIsOpen, setMyPageIsOpen] = useState(false);
@@ -84,20 +86,32 @@ const HeaderNavigation = () => {
                       widthProp={NavMenuWidth.search}
                       onMouseEnter={() => {
                         setSearchIsOpen(true);
+                        setTextIsOpen(false);
                         setIsHidden(false);
                       }}
                       onMouseLeave={() => setSearchIsOpen(false)}
                       onClick={() => setSearchIsOpen(true)}
                     >
                       <MenuBtn>공고 검색</MenuBtn>
-                      <SearchMenu searchIsOpen={searchIsOpen} isHidden={[isHidden, setIsHidden]} />
+                      <SearchMenu
+                        searchIsOpen={searchIsOpen}
+                        isHidden={[isHidden, setIsHidden]}
+                        textIsOepn={textIsOpen}
+                      />
                     </NavMenu>
-                    <NavMenu>
-                      <Link to="/studyDetail">
-                        <MenuBtn>제목 검색</MenuBtn>
-                      </Link>
-                      <SearchByText />
-                    </NavMenu>
+                    <WrapTextMenu
+                      widthProp={NavMenuWidth.search}
+                      onMouseEnter={() => {
+                        setTextIsOpen(true);
+                        setIsHidden(false);
+                        setSearchIsOpen(false);
+                      }}
+                      onMouseLeave={() => setTextIsOpen(false)}
+                      onClick={() => setTextIsOpen(true)}
+                    >
+                      <MenuBtn>제목 검색</MenuBtn>
+                      <TextSearch textIsOpen={textIsOpen} isHidden={isHidden} />
+                    </WrapTextMenu>
                     <GpsContainer widthProp={NavMenuWidth.gps} onClick={handleKakaoOpenModal}>
                       {}
                       <GpsIcon />

@@ -10,6 +10,7 @@ import MyPage from './pages/MyPage';
 import NotFoundPage from './pages/NotFoundPage';
 import HeaderNavigation from './components/Header/HeaderNavigation';
 import UploadStudy from './pages/UploadStudy';
+import StudyDetail from './pages/StudyDetail';
 import MyProjectPage from './pages/MyProjectPage';
 import ChatPage from './pages/ChatPage';
 
@@ -28,6 +29,7 @@ const App = () => {
             <Route path="/oauth/:social" element={<AuthRedirectPage />} />
             <Route path="/uploadStudy" element={<UploadStudy />} />
             <Route path="/*" element={<NotFoundPage />} />
+            <Route path="/studyDetail/:id" element={<StudyDetail />} />
           </Routes>
         </ModalProvider>
       </BrowserRouter>
