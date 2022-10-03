@@ -1,4 +1,5 @@
 import React from 'react';
+import { CancelButton, CustomButton } from 'src/styles/Button';
 import StudyComponent from '../Study/StudyComponent';
 import {
   Study,
@@ -10,8 +11,10 @@ import {
 } from '../Study/StudyList.style';
 import StudyTechs from '../Study/StudyTechs';
 import {
+  ChatHandleBlock,
   ChatRoomBlock,
   ChatRoomButton,
+  ChatRoomWrapper,
   MyProjectInner,
   MyProjectListBlock,
   Title,
@@ -27,11 +30,32 @@ const MyProjectList = ({ myProject }: Props) => {
       <Wrapper>
         {myProject.map((list: any, idx: number) => (
           <MyProjectInner key={idx}>
-            <Title to="/">프로젝트 제목</Title>
+            <div>
+              <Title to="/">프로젝트 제목</Title>
+              <CustomButton>방생성</CustomButton>
+            </div>
             <ChatRoomBlock>
-              <ChatRoomButton to="/chat">채팅방 1 입장</ChatRoomButton>
-              <ChatRoomButton to="/chat">채팅방 3 입장</ChatRoomButton>
-              <ChatRoomButton to="/chat">채팅방 2 입장</ChatRoomButton>
+              <ChatRoomWrapper>
+                <ChatRoomButton to="/chat">채팅방 입장</ChatRoomButton>
+                <ChatHandleBlock>
+                  <CustomButton>수정</CustomButton>
+                  <CancelButton>삭제</CancelButton>
+                </ChatHandleBlock>
+              </ChatRoomWrapper>
+              <ChatRoomWrapper>
+                <ChatRoomButton to="/chat">채팅방 1 입장</ChatRoomButton>
+                <ChatHandleBlock>
+                  <CustomButton>수정</CustomButton>
+                  <CancelButton>삭제</CancelButton>
+                </ChatHandleBlock>
+              </ChatRoomWrapper>
+              <ChatRoomWrapper>
+                <ChatRoomButton to="/chat">채팅방 1 입장</ChatRoomButton>
+                <ChatHandleBlock>
+                  <CustomButton>수정</CustomButton>
+                  <CancelButton>삭제</CancelButton>
+                </ChatHandleBlock>
+              </ChatRoomWrapper>
             </ChatRoomBlock>
           </MyProjectInner>
         ))}

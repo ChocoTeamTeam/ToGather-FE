@@ -18,8 +18,7 @@ interface IMessage {
   nickname: string;
   profileImage: string;
   message: string;
-  time: string;
-  timess: string;
+  sendTime: string;
 }
 
 let client: Client | null = null;
@@ -36,8 +35,7 @@ const ChatPage = ({ roomId, projectId }: IProps) => {
     if (client != null) {
       client.subscribe(`/topic/room.${1}`, (data: any) => {
         const newMessage: IMessage = JSON.parse(data.body);
-        console.log(newMessage);
-        setMessage((prevData) => [...prevData, { ...newMessage, time: newMessage.timess }]);
+        setMessage((prevData) => [...prevData, { ...newMessage }]);
       });
     }
   };
@@ -74,7 +72,6 @@ const ChatPage = ({ roomId, projectId }: IProps) => {
   };
 
   const connect = () => {
-    console.log(auth.accessToken);
     client = new StompJs.Client({
       brokerURL: 'wss://dokuny.blog/stomp/chat',
       connectHeaders: {
@@ -116,7 +113,7 @@ const ChatPage = ({ roomId, projectId }: IProps) => {
           message: content,
           nickname: user.nickname,
           profileImage: user.profileImage,
-          // time: time,
+          sendTime: time,
         }),
       });
       setContent('');

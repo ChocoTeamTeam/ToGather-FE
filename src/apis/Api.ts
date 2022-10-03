@@ -29,14 +29,12 @@ Api.interceptors.response.use(
     if (errResStatus === 401 && !originalRequest.retry) {
       originalRequest.retry = true;
       const prevRefreshToken = getCookie('refreshToken');
-      debugger;
 
       if (prevRefreshToken) {
         // refersh token을 이용하여 access token 재발행 받기
         return Api.post('/oauth/refresh', prevRefreshToken)
           .then((res) => {
             const { accessToken, refreshToken } = res.data;
-            debugger;
             setCookie('refreshToken', res.data.refreshToken, {
               path: '/',
             });

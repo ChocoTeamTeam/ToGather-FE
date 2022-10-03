@@ -20,7 +20,7 @@ interface IMessage {
   message: string;
   nickname: string;
   profileImage: string;
-  time: string;
+  sendTime: string;
 }
 
 interface IProps {
@@ -59,7 +59,7 @@ const ChatContainer = ({
         <MessageBoxBlock>
           <MessageRoomName>{roomName}</MessageRoomName>
           <MessageBoxWrapper ref={bottomRef}>
-            {message.map(({ nickname, profileImage, message, time }, idx) => (
+            {message.map(({ nickname, profileImage, message, sendTime }, idx) => (
               <MessageBox key={idx}>
                 <UserProfile>
                   <img src={profileImage} alt="프로필" />
@@ -68,7 +68,7 @@ const ChatContainer = ({
                   <UserNickname>{nickname}</UserNickname>
                   <BubbleMessage>{message}</BubbleMessage>
                 </div>
-                <MessageTime>{time}</MessageTime>
+                <MessageTime>{sendTime}</MessageTime>
               </MessageBox>
             ))}
           </MessageBoxWrapper>

@@ -44,8 +44,6 @@ const AuthService = () => {
   };
 
   const registerService = async (form: Iform) => {
-    debugger;
-
     const response = await signUp(form, authToken.signUpToken);
 
     if (response.data.status === 400) {
