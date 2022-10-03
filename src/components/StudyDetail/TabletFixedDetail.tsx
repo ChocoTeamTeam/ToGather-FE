@@ -27,7 +27,7 @@ const TabletFixedDetail = ({ userId, gettedData, handleEnter }: IProps) => {
             <TableValue>{gettedData.personnel}</TableValue>
           </WrapTableColumn>
         </TabletMember>
-        <TabletBtn onClick={handleEnter} disabled={userId === gettedData.member.id}>
+        <TabletBtn onClick={handleEnter} disabled={userId === gettedData.member.id || !userId}>
           참여하기
         </TabletBtn>
       </TabletBlock>

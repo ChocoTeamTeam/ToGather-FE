@@ -59,7 +59,7 @@ const StudyDetail = () => {
       <Main>
         <Header gettedData={data} />
         <InfoContainer gettedData={data} />;
-        <Comments />
+        <Comments gettedData={data} />
       </Main>
       <FixedDetail userId={user.id} gettedData={data} handleEnter={handleEnterProject} />
       <TabletFixedDetail userId={user.id} gettedData={data} handleEnter={handleEnterProject} />

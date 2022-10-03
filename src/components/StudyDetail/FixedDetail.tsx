@@ -32,7 +32,7 @@ const FixedDetail = ({ userId, gettedData, handleEnter }: IProps) => {
         </MemberTable>
         <BtnBlock>
           {}
-          <Btn onClick={handleEnter} disabled={userId === gettedData.member.id}>
+          <Btn onClick={handleEnter} disabled={userId === gettedData.member.id || !userId}>
             참여하기
           </Btn>
         </BtnBlock>

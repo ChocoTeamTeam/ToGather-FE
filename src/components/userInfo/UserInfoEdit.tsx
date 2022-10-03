@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { editUser, withdrawal } from 'src/apis/user';
+import { checkNickname, editUser, withdrawal } from 'src/apis/user';
 import CreatableSelect from 'react-select/creatable';
 import { CancelButton, CustomButton, SubmitButton } from 'src/styles/Button';
 import {
@@ -44,6 +44,7 @@ const UserInfoEdit = ({ user }: props) => {
   });
   const { handleFileInput, handleUpload } = S3UploadImage('profile/');
   const resetUser = useResetRecoilState(userAtom);
+  const [nicknameCheck, setNicknameCheck] = useState(true);
   const navigate = useNavigate();
   const { updateUserByIdService } = UserService();
 
@@ -52,8 +53,25 @@ const UserInfoEdit = ({ user }: props) => {
     changeInput(e);
   };
 
+  const handleCheckUserNickName = async (e: React.MouseEvent<HTMLElement>) => {
+    const nickname = form.nickname;
+    try {
+      const response = await checkNickname(nickname);
+
+      alert(response.data ? '중복입니다' : '정상입니다.');
+
+      setNicknameCheck(response.data);
+    } catch (e) {}
+  };
+
   const handleSubmit = async (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault();
+
+    if (user.nickname !== form.nickname && nicknameCheck) {
+      alert('중복확인을 눌러 주세요.');
+      return;
+    }
+
     try {
       let imageUrl = form.profileImage;
       if (user.profileImage !== form.profileImage) {
@@ -94,7 +112,9 @@ const UserInfoEdit = ({ user }: props) => {
           value={form.nickname || ''}
           onChange={changeInput}
         />
-        <CustomButton style={{ marginLeft: '1rem' }}>중복확인</CustomButton>
+        <CustomButton style={{ marginLeft: '1rem' }} onClick={handleCheckUserNickName}>
+          중복확인
+        </CustomButton>
       </InputBoxBlock>
       <InputBoxBlock>
         <InputLabel htmlFor="tech">기술 태그</InputLabel>

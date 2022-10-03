@@ -21,7 +21,7 @@ interface Iprops {
 const StudyComponent = ({ id, techs, deadline, title, author }: Iprops) => {
   return (
     <Study to={`/studyDetail/${id}`}>
-      <StudyTechs techsList={techs} />
+      {/* <StudyTechs techsList={techs} /> */}
       <StudyDeadline>
         마감 예정일
         <span aria-hidden="true">|</span>

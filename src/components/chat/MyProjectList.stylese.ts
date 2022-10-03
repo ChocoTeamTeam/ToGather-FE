@@ -77,6 +77,11 @@ const Title = styled(Link)`
     opacity: 0.6;
   }
 `;
+
+const AccordionButton = styled.button`
+  background: none;
+  margin-left: 0.5rem;
+`;
 export {
   MyProjectListBlock,
   Wrapper,
@@ -86,4 +91,5 @@ export {
   ChatHandleBlock,
   Title,
   ChatRoomWrapper,
+  AccordionButton,
 };
