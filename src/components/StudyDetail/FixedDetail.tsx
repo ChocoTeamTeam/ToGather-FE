@@ -8,8 +8,6 @@ import {
   BackBtn,
   Btn,
 } from './FixedDetail.style';
-import { getStudyDetailQuery } from '../../service/studyQuery';
-import { ProjectDetailAtom } from '../../contexts/ProjectDetailAtom';
 import { useRecoilValue } from 'recoil';
 
 const FixedDetail = () => {
