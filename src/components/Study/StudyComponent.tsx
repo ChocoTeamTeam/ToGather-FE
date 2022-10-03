@@ -20,7 +20,7 @@ interface Iprops {
 
 const StudyComponent = ({ id, techs, deadline, title, author }: Iprops) => {
   return (
-    <Study to={`/studyDetail/${id}`} onClick={() => console.log(1)}>
+    <Study to={`/studyDetail/${id}`}>
       <StudyTechs techsList={techs} />
       <StudyDeadline>
         마감 예정일
@@ -29,10 +29,10 @@ const StudyComponent = ({ id, techs, deadline, title, author }: Iprops) => {
       </StudyDeadline>
       <StudyTitle>{title}</StudyTitle>
       <StudyFooter>
-        <StudyAuthor>
+        {/* <StudyAuthor>
           <img src="/" width="36px" height="36px" />
           {author}
-        </StudyAuthor>
+        </StudyAuthor> */}
         <StudyViewer>{author}</StudyViewer>
       </StudyFooter>
     </Study>

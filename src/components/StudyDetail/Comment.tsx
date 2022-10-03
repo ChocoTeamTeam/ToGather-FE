@@ -13,6 +13,7 @@ import {
 } from './Comment.style';
 
 const Comments = () => {
+  // comments
   return (
     <CommentBlock>
       <CommentHeader>댓글창</CommentHeader>
