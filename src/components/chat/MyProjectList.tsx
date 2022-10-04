@@ -1,4 +1,3 @@
-import _, { divide } from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { createChatRoomByProjectId, getChatRoomByProjectId } from 'src/apis/chatRoom';
 import { getParticipatingProjects } from 'src/apis/project';
