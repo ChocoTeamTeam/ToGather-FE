@@ -29,7 +29,6 @@ const Footer = ({ form }: iProps) => {
 
   const navigation = useNavigate();
 
-
   const handleSubmit = () => {
     setIsUploaded(true);
     let resultForm;
