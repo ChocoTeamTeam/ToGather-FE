@@ -80,26 +80,26 @@ const MapModal = () => {
               : { lat: initialLocation.La, lng: initialLocation.Ma }
           }
         >
-          {pathname === '/'
-            ? !isHidden &&
-              location && (
-                <>
-                  <WrapMessage isMain={pathname === '/'} isHidden={isHidden}>
-                    {location.regionName}
-                  </WrapMessage>
-                  <WrapBtn>
-                    <Btn isHidden={isHidden} onClick={handleSubmit}>
-                      검색하기
-                    </Btn>
-                  </WrapBtn>
-                </>
-              )
-            : !isHidden &&
+          {
+            !isHidden && location && (
+              <>
+                <WrapMessage isMain={pathname === '/'} isHidden={isHidden}>
+                  {location.regionName}
+                </WrapMessage>
+                <WrapBtn>
+                  <Btn isHidden={isHidden} onClick={handleSubmit}>
+                    제출하기
+                  </Btn>
+                </WrapBtn>
+              </>
+            )
+            /*             : !isHidden &&
               location && (
                 <WrapMessage isMain={pathname === '/'} isHidden={isHidden}>
                   {location.regionName}
                 </WrapMessage>
-              )}
+              ) */
+          }
         </MapMarker>
         {/* 
         {pathname === '/' &&
