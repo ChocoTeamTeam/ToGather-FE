@@ -81,7 +81,7 @@ const HeaderNavigation = () => {
         <NavigationBlock>
           <Wrapper>
             <LogoTitle to="/">
-              <img src="src/components/@icons/logo2.png" alt="" width="100px" height="60px" />
+              <img src="src/components/@icons/logo4.png" alt="" width="200px" height="60px" />
             </LogoTitle>
             <WrapRightNav>
               <CategoryBlock>
