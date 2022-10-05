@@ -69,8 +69,8 @@ const StudyList = () => {
       getNextPageParam: (lastPage) => {
         return !lastPage.isLast ? lastPage.nextPage : undefined;
       },
-      staleTime: 3 * 60 * 1000,
-      refetchOnWindowFocus: false,
+      /*       staleTime: 3 * 60 * 1000,
+      refetchOnWindowFocus: false, */
       refetchOnMount: 'always',
     }
   );
