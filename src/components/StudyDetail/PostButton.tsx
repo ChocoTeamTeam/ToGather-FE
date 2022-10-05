@@ -10,8 +10,8 @@ interface IProps {
 const PostButton = ({ updatePost, removePost }: IProps) => {
   return (
     <PostButtonBlock>
-      <SubmitButton>포스트 수정</SubmitButton>
-      <CancelButton>포스트 삭제</CancelButton>
+      <SubmitButton onClick={updatePost}>포스트 수정</SubmitButton>
+      <CancelButton onClick={removePost}>포스트 삭제</CancelButton>
     </PostButtonBlock>
   );
 };
