@@ -80,7 +80,9 @@ const HeaderNavigation = () => {
       <NavigationContainer>
         <NavigationBlock>
           <Wrapper>
-            <LogoTitle to="/">toGahter</LogoTitle>
+            <LogoTitle to="/">
+              <img src="src/components/@icons/logo.png" alt="" width={'50px'} height={'50px'} />
+            </LogoTitle>
             <WrapRightNav>
               <CategoryBlock>
                 {pathname === '/' && (
